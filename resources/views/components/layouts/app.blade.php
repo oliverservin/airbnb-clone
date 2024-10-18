@@ -7,6 +7,7 @@
         @vite('resources/css/app.css')
     </head>
     <body class="h-full antialiased">
+        <x-login-modal />
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
     </body>
