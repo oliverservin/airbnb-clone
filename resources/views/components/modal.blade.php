@@ -7,8 +7,8 @@
                 class="translate relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none md:h-auto lg:h-auto"
             >
                 <div class="relative flex items-center justify-center rounded-t border-b-[1px] p-6">
-                    <button class="absolute left-9 border-0 p-1 transition hover:opacity-70" onClick="{handleClose}">
-                        <!-- close icon size-18px -->
+                    <button class="absolute left-9 border-0 p-1 transition hover:opacity-70">
+                        <x-icon.close class="size-[18px]" />
                     </button>
                     {{ $title ?? '' }}
                 </div>
