@@ -1,20 +1,57 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    public $email = '';
+
+    public $password = '';
+
+    public function login()
+    {
+        $this->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        $this->authenticate();
+
+        Session::regenerate();
+
+        $this->redirectIntended(default: route('home'), navigate: true);
+    }
+
+    public function authenticate()
+    {
+        if (! Auth::attempt($this->only(['email', 'password']), true)) {
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
+    }
+}; ?>
+
 <div x-data="{ showLoginModal: false }" x-on:show-login-modal.window="showLoginModal = true">
     <x-modal x-model="showLoginModal">
         <x-slot:title>
             <div class="text-lg font-semibold">Iniciar sesión</div>
         </x-slot>
-        <div class="flex flex-col gap-4">
+        <form id="loginForm" wire:submit="login" class="flex flex-col gap-4">
             <div>
                 <div class="text-2xl font-bold">Bienvenido</div>
                 <div class="mt-2 font-light text-neutral-500">Accede a tu cuenta</div>
             </div>
 
-            <x-input label="Email" required />
-            <x-input label="Contraseña" required />
-        </div>
+            <x-input wire:model="email" label="Email" required />
+            <x-input wire:model="password" type="password" label="Contraseña" required />
+        </form>
         <x-slot:footer>
             <div class="flex w-full flex-row items-center gap-4">
-                <x-button>Continuar</x-button>
+                <x-button type="submit" form="loginForm">Continuar</x-button>
             </div>
             <div class="mt-3 flex flex-col gap-4">
                 <hr />
