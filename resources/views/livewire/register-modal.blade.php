@@ -42,9 +42,33 @@ new class extends Component
                 <div class="mt-2 font-light text-neutral-500">Crear una cuenta</div>
             </div>
 
-            <x-input wire:model="email" label="Email" required />
-            <x-input wire:model="name" label="Nombre" required />
-            <x-input wire:model="password" type="password" label="Contraseña" required />
+            <div>
+                <x-input wire:model="email" label="Email" :has-error="$errors->has('email')" required />
+
+                @error('email')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <x-input wire:model="name" label="Nombre" :has-error="$errors->has('name')" required />
+
+                @error('name')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <x-input
+                    wire:model="password"
+                    type="password"
+                    label="Contraseña"
+                    :has-error="$errors->has('password')"
+                    required
+                />
+
+                @error('password')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
+            </div>
         </form>
         <x-slot:footer>
             <div class="flex w-full flex-row items-center gap-4">
