@@ -12,6 +12,10 @@
             <livewire:register-modal />
         @endguest
 
+        @auth
+            <livewire:rent-modal />
+        @endauth
+
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
     </body>
