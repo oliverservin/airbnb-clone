@@ -1,6 +1,7 @@
 @props(['disabled' => false, 'outline' => false, 'small' => false])
 
 <button
+    {{ $attributes }}
     {{ $disabled ? 'disabled' : '' }}
     @class([
         'relative disabled:cursor-not-allowed disabled:opacity-70',

@@ -22,8 +22,15 @@
     >
         <div class="flex cursor-pointer flex-col">
             @guest
-                <x-menu-item @click="$dispatch('show-login-modal')">Iniciar sesión</x-menu-item>
-                <x-menu-item>Registrarse</x-menu-item>
+                <x-menu-item @click="$dispatch('show-login-modal'); showDropdown = false;">Iniciar sesión</x-menu-item>
+                <x-menu-item @click="$dispatch('show-register-modal'); showDropdown = false;">Registrarse</x-menu-item>
+            @else
+                <x-menu-item>Mis viajes</x-menu-item>
+                <x-menu-item>Mis favoritos</x-menu-item>
+                <x-menu-item>Mis reservas</x-menu-item>
+                <x-menu-item>Mis propiedades</x-menu-item>
+                <x-menu-item>Pon tu casa en StayStop</x-menu-item>
+                <x-menu-item>Cerrar sesión</x-menu-item>
             @endguest
         </div>
     </div>
