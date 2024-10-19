@@ -22,7 +22,7 @@
     >
         <div class="flex cursor-pointer flex-col">
             @guest
-                <x-menu-item>Iniciar sesión</x-menu-item>
+                <x-menu-item @click="$dispatch('show-login-modal')">Iniciar sesión</x-menu-item>
                 <x-menu-item>Registrarse</x-menu-item>
             @endguest
         </div>
