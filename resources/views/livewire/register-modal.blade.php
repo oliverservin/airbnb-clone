@@ -8,7 +8,9 @@ use Livewire\Volt\Component;
 new class extends Component
 {
     public $name = '';
+
     public $email = '';
+
     public $password = '';
 
     public function register()

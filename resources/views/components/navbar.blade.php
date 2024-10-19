@@ -4,7 +4,7 @@
             <div class="flex flex-row items-center justify-between gap-3 md:gap-0">
                 <x-logo />
                 <x-search />
-                <x-user-menu />
+                <livewire:user-menu />
             </div>
         </x-container>
     </div>

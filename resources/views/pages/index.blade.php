@@ -10,6 +10,7 @@ name('home');
     @volt('pages.index')
         <div>
             <!-- // -->
+            &nbsp;
         </div>
     @endvolt
 </x-layouts.app>
