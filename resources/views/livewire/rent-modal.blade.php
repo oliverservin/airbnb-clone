@@ -11,7 +11,13 @@ new class extends Component
 
     public $country = '';
 
-    public $currentStep = 'category';
+    public $guestCount = 1;
+
+    public $roomCount = 1;
+
+    public $bathroomCount = 1;
+
+    public $currentStep = 'info';
 
     public function continueToLocation()
     {
@@ -29,6 +35,17 @@ new class extends Component
         ]);
 
         $this->currentStep = 'info';
+    }
+
+    public function continueToImages()
+    {
+        $this->validate([
+            'guestCount' => ['required', 'integer', 'min:1'],
+            'roomCount' => ['required', 'integer', 'min:1'],
+            'bathroomCount' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $this->currentStep = 'images';
     }
 
     #[Computed]
@@ -130,10 +147,17 @@ new class extends Component
                             return country.translations.spa?.common || country.name.common;
                         }
                     }"
-                    x-init="initCountries(); $nextTick(() => initMap())"
+                    x-init="
+                        initCountries()
+                        $nextTick(() => initMap())
+                    "
                     class="flex flex-col gap-8"
                 >
-                    <select wire:model="country" @change="updateMap" class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black">
+                    <select
+                        wire:model="country"
+                        @change="updateMap"
+                        class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
+                    >
                         <option value="" disabled>Selecciona un país</option>
                         <template x-for="country in countries" :key="country.cca2">
                             <option :value="country.cca2" x-text="getCountryNameInSpanish(country)"></option>
@@ -148,6 +172,43 @@ new class extends Component
                 <div class="flex w-full flex-row items-center gap-4">
                     <x-button type="button" @click="$wire.set('currentStep', 'category')" outline>Regresar</x-button>
                     <x-button type="submit" form="selectLocationForm">Continuar</x-button>
+                </div>
+            </x-slot>
+        @endif
+
+        @if ($currentStep === 'info')
+            <form id="infoForm" wire:submit="continueToImages" class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu lugar</div>
+                    <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienen?</div>
+                </div>
+
+                <x-counter wire:model="guestCount">
+                    <div>
+                        <div class="font-medium">Huespedes</div>
+                        <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
+                    </div>
+                </x-counter>
+
+                <x-counter wire:model="roomCount">
+                    <div>
+                        <div class="font-medium">Habitaciones</div>
+                        <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
+                    </div>
+                </x-counter>
+
+                <x-counter wire:model="bathroomCount">
+                    <div>
+                        <div class="font-medium">Baños</div>
+                        <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
+                    </div>
+                </x-counter>
+            </form>
+
+            <x-slot:footer>
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="button" @click="$wire.set('currentStep', 'location')" outline>Regresar</x-button>
+                    <x-button type="submit" form="infoForm">Continuar</x-button>
                 </div>
             </x-slot>
         @endif
