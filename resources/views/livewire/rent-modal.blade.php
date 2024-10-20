@@ -17,7 +17,7 @@ new class extends Component
 
     public $bathroomCount = 1;
 
-    public $currentStep = 'info';
+    public $currentStep = 'category';
 
     public function continueToLocation()
     {
@@ -48,6 +48,21 @@ new class extends Component
         $this->currentStep = 'images';
     }
 
+    public function continueToDescription()
+    {
+        $this->currentStep = 'description';
+    }
+
+    public function continueToPrice()
+    {
+        $this->currentStep = 'price';
+    }
+
+    public function save()
+    {
+        //
+    }
+
     #[Computed]
     public function categories()
     {
@@ -65,7 +80,7 @@ new class extends Component
             <form id="selectCategoryForm" wire:submit="continueToLocation" class="flex flex-col gap-8">
                 <div>
                     <div class="text-2xl font-bold">¿Cuál de estas describe mejor tu lugar?</div>
-                    <div class="mt-2 font-light text-neutral-500">Elige una categoría</div>
+                    <div class="mt-2 font-light text-neutral-500">Elige una categoría.</div>
                 </div>
 
                 <div class="grid max-h-[50vh] grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2">
@@ -98,13 +113,9 @@ new class extends Component
         @if ($currentStep === 'location')
             <form id="selectLocationForm" wire:submit="continueToInfo" class="flex flex-col gap-8">
                 <div>
-                    <div class="text-2xl font-bold">¿Dónde está ubicado tu lugar?</div>
-                    <div class="mt-2 font-light text-neutral-500">¡Ayuda a los huéspedes a encontrarte!</div>
+                    <div class="text-2xl font-bold">¿Dónde se encuentra su casa?</div>
+                    <div class="mt-2 font-light text-neutral-500">Ayuda a tus invitados a encontrarte.</div>
                 </div>
-
-                @error('country')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
 
                 <div
                     wire:ignore
@@ -166,6 +177,10 @@ new class extends Component
 
                     <div id="map" class="h-[35vh] rounded-lg"></div>
                 </div>
+
+                @error('country')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </form>
 
             <x-slot:footer>
@@ -179,8 +194,8 @@ new class extends Component
         @if ($currentStep === 'info')
             <form id="infoForm" wire:submit="continueToImages" class="flex flex-col gap-8">
                 <div>
-                    <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu lugar</div>
-                    <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienen?</div>
+                    <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
+                    <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
                 </div>
 
                 <x-counter wire:model="guestCount">
@@ -209,6 +224,54 @@ new class extends Component
                 <div class="flex w-full flex-row items-center gap-4">
                     <x-button type="button" @click="$wire.set('currentStep', 'location')" outline>Regresar</x-button>
                     <x-button type="submit" form="infoForm">Continuar</x-button>
+                </div>
+            </x-slot>
+        @endif
+
+        @if ($currentStep === 'images')
+            <form id="imagesForm" wire:submit="continueToDescription" class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">Añade una foto de tu casa</div>
+                    <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
+                </div>
+            </form>
+
+            <x-slot:footer>
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="button" @click="$wire.set('currentStep', 'info')" outline>Regresar</x-button>
+                    <x-button type="submit" form="imagesForm">Continuar</x-button>
+                </div>
+            </x-slot>
+        @endif
+
+        @if ($currentStep === 'description')
+            <form id="descriptionForm" wire:submit="continueToPrice" class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">¿Cómo describirías tu lugar?</div>
+                    <div class="mt-2 font-light text-neutral-500">Lo mejor es que sea breve y concisa.</div>
+                </div>
+            </form>
+
+            <x-slot:footer>
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="button" @click="$wire.set('currentStep', 'images')" outline>Regresar</x-button>
+                    <x-button type="submit" form="descriptionForm">Continuar</x-button>
+                </div>
+            </x-slot>
+        @endif
+
+        @if ($currentStep === 'price')
+            <form id="priceForm" wire:submit="save" class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">Ahora, establece tu precio</div>
+                    <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
+                </div>
+            </form>
+
+            <x-slot:footer>
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="button" @click="$wire.set('currentStep', 'description')" outline>Regresar</x-button>
+                    <x-button type="submit" form="priceForm">Continuar</x-button>
                 </div>
             </x-slot>
         @endif
