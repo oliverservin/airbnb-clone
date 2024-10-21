@@ -7,6 +7,10 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
+    public $title = '';
+
+    public $description = '';
+
     public $category = '';
 
     public $country = '';
@@ -17,7 +21,7 @@ new class extends Component
 
     public $bathroomCount = 1;
 
-    public $currentStep = 'category';
+    public $currentStep = 'price';
 
     public function continueToLocation()
     {
@@ -164,16 +168,21 @@ new class extends Component
                     "
                     class="flex flex-col gap-8"
                 >
-                    <select
-                        wire:model="country"
-                        @change="updateMap"
-                        class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
-                    >
-                        <option value="" disabled>Selecciona un país</option>
-                        <template x-for="country in countries" :key="country.cca2">
-                            <option :value="country.cca2" x-text="getCountryNameInSpanish(country)"></option>
-                        </template>
-                    </select>
+                    <div class="relative">
+                        <select
+                            wire:model="country"
+                            @change="updateMap"
+                            class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
+                        >
+                            <option value="" disabled>Selecciona un país</option>
+                            <template x-for="country in countries" :key="country.cca2">
+                                <option :value="country.cca2" x-text="getCountryNameInSpanish(country)"></option>
+                            </template>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 mr-3 flex items-center">
+                            <x-icon.chevron-up-down class="size-6" />
+                        </div>
+                    </div>
 
                     <div id="map" class="h-[35vh] rounded-lg"></div>
                 </div>
@@ -234,6 +243,14 @@ new class extends Component
                     <div class="text-2xl font-bold">Añade una foto de tu casa</div>
                     <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
                 </div>
+
+                <button
+                    type="button"
+                    class="relative flex cursor-pointer flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
+                >
+                    <x-icon.photo class="size-[50px]" />
+                    <div class="text-lg font-semibold">Click to upload</div>
+                </button>
             </form>
 
             <x-slot:footer>
@@ -250,6 +267,24 @@ new class extends Component
                     <div class="text-2xl font-bold">¿Cómo describirías tu lugar?</div>
                     <div class="mt-2 font-light text-neutral-500">Lo mejor es que sea breve y concisa.</div>
                 </div>
+
+                <div>
+                    <x-input wire:model="title" label="Título" :has-error="$errors->has('title')" required />
+
+                    @error('title')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <hr>
+
+                <div>
+                    <x-input wire:model="description" label="Description" :has-error="$errors->has('description')" required />
+
+                    @error('description')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </div>
             </form>
 
             <x-slot:footer>
@@ -265,6 +300,14 @@ new class extends Component
                 <div>
                     <div class="text-2xl font-bold">Ahora, establece tu precio</div>
                     <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
+                </div>
+
+                <div>
+                    <x-price-input wire:model="price" label="Precio" :has-error="$errors->has('price')" required />
+
+                    @error('price')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
                 </div>
             </form>
 
