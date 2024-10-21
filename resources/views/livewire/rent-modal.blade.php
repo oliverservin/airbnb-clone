@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
@@ -16,13 +17,13 @@ new class extends Component
 
     public $category = '';
 
-    public $country = '';
+    public $location = '';
 
-    public $guestCount = 1;
+    public $guests = 1;
 
-    public $roomCount = 1;
+    public $rooms = 1;
 
-    public $bathroomCount = 1;
+    public $bathrooms = 1;
 
     public $price = '';
 
@@ -42,7 +43,7 @@ new class extends Component
     public function continueToInfo()
     {
         $this->validate([
-            'country' => ['required'],
+            'location' => ['required'],
         ]);
 
         $this->currentStep = 'info';
@@ -51,9 +52,9 @@ new class extends Component
     public function continueToImages()
     {
         $this->validate([
-            'guestCount' => ['required', 'integer', 'min:1'],
-            'roomCount' => ['required', 'integer', 'min:1'],
-            'bathroomCount' => ['required', 'integer', 'min:1'],
+            'guests' => ['required', 'integer', 'min:1'],
+            'rooms' => ['required', 'integer', 'min:1'],
+            'bathrooms' => ['required', 'integer', 'min:1'],
         ]);
 
         $this->currentStep = 'images';
@@ -61,17 +62,45 @@ new class extends Component
 
     public function continueToDescription()
     {
+        $this->validate([
+            'photo' => ['nullable', 'image', 'max:2048'],
+        ]);
+
         $this->currentStep = 'description';
     }
 
     public function continueToPrice()
     {
+        $this->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+        ]);
+
         $this->currentStep = 'price';
     }
 
     public function save()
     {
-        //
+        $this->validate([
+            'price' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $listing = Auth::user()->listings()->create([
+            'title' => $this->title,
+            'description' => $this->description,
+            'category' => $this->category,
+            'rooms' => $this->rooms,
+            'bathrooms' => $this->bathrooms,
+            'guests' => $this->guests,
+            'location' => $this->location,
+            'price' => $this->price,
+        ]);
+
+        if ($this->photo) {
+            $listing->updatePhoto($this->photo);
+        }
+
+        $this->redirect(route('home'), navigate: true);
     }
 
     #[Computed]
@@ -81,7 +110,7 @@ new class extends Component
     }
 }; ?>
 
-<div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
+<div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
         <x-slot:title>
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
@@ -151,8 +180,8 @@ new class extends Component
                             }).addTo(this.map);
                         },
                         updateMap() {
-                            if (!$wire.country) return;
-                            const country = this.countries.find(c => c.cca2 === $wire.country);
+                            if (!$wire.location) return;
+                            const country = this.countries.find(c => c.cca2 === $wire.location);
                             if (country && country.latlng) {
                                 this.map.setView(country.latlng, 4);
 
@@ -177,7 +206,7 @@ new class extends Component
                 >
                     <div class="relative">
                         <select
-                            wire:model="country"
+                            wire:model="location"
                             @change="updateMap"
                             class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
                         >
@@ -194,7 +223,7 @@ new class extends Component
                     <div id="map" class="h-[35vh] rounded-lg"></div>
                 </div>
 
-                @error('country')
+                @error('location')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </form>
@@ -214,21 +243,21 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
                 </div>
 
-                <x-counter wire:model="guestCount">
+                <x-counter wire:model="guests">
                     <div>
                         <div class="font-medium">Huespedes</div>
                         <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
                     </div>
                 </x-counter>
 
-                <x-counter wire:model="roomCount">
+                <x-counter wire:model="rooms">
                     <div>
                         <div class="font-medium">Habitaciones</div>
                         <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
                     </div>
                 </x-counter>
 
-                <x-counter wire:model="bathroomCount">
+                <x-counter wire:model="bathrooms">
                     <div>
                         <div class="font-medium">Baños</div>
                         <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
@@ -297,7 +326,7 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-input wire:model="title" label="Título" :has-error="$errors->has('title')" required />
+                    <x-input wire:model="title" label="Título" :has-error="$errors->has('title')"/>
 
                     @error('title')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
@@ -311,7 +340,6 @@ new class extends Component
                         wire:model="description"
                         label="Description"
                         :has-error="$errors->has('description')"
-                        required
                     />
 
                     @error('description')
@@ -336,7 +364,7 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-price-input wire:model="price" label="Precio" :has-error="$errors->has('price')" required />
+                    <x-price-input wire:model="price" label="Precio" :has-error="$errors->has('price')"/>
 
                     @error('price')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
