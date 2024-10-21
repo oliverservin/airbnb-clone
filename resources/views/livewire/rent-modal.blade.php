@@ -164,7 +164,7 @@ new class extends Component
                         map: null,
                         marker: null,
                         initCountries() {
-                            fetch('https://raw.githubusercontent.com/mledoze/countries/master/dist/countries.json')
+                            fetch('https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json')
                                 .then(response => response.json())
                                 .then(data => {
                                     this.countries = data;

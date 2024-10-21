@@ -21,6 +21,11 @@ class Listing extends Model
         'price'
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'label');
+    }
+
     public function updatePhoto(UploadedFile $photo)
     {
         tap($this->photo_path, function ($previous) use ($photo) {
@@ -34,7 +39,7 @@ class Listing extends Model
         });
     }
 
-    public function profilePhotoUrl() : Attribute
+    public function photoUrl() : Attribute
     {
         return Attribute::get(function () {
             return $this->photo_path

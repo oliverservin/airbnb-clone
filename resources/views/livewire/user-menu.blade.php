@@ -52,7 +52,7 @@ new class extends Component
                 <x-menu-item>Mis viajes</x-menu-item>
                 <x-menu-item>Mis favoritos</x-menu-item>
                 <x-menu-item>Mis reservas</x-menu-item>
-                <x-menu-item>Mis propiedades</x-menu-item>
+                <x-menu-item :href="route('properties')" wire:navigate>Mis propiedades</x-menu-item>
                 <x-menu-item>Pon tu casa en StayStop</x-menu-item>
                 <x-menu-item wire:click="logout">Cerrar sesión</x-menu-item>
             @endguest

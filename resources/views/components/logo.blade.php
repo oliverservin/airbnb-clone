@@ -1,4 +1,4 @@
-<div class="hidden cursor-pointer md:flex items-center gap-1">
+<a href="{{ route('home') }}" wire:navigate class="hidden cursor-pointer md:flex items-center gap-1">
     <svg class="size-8 text-rose-500" width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             fill-rule="evenodd"
@@ -9,4 +9,4 @@
     </svg>
 
     <span class="text-rose-500 text-2xl leading-none font-semibold tracking-tight">stayspot</span>
-</div>
+</a>

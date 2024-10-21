@@ -8,5 +8,7 @@
             </div>
         </x-container>
     </div>
-    <x-categories />
+    @if(request()->route()->getName() === 'home')
+        <x-categories />
+    @endif
 </div>
