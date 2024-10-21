@@ -347,7 +347,7 @@ new class extends Component
             <x-slot:footer>
                 <div class="flex w-full flex-row items-center gap-4">
                     <x-button type="button" @click="$wire.set('currentStep', 'description')" outline>Regresar</x-button>
-                    <x-button type="submit" form="priceForm">Continuar</x-button>
+                    <x-button type="submit" form="priceForm">Publicar</x-button>
                 </div>
             </x-slot>
         @endif
