@@ -4,9 +4,12 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component
 {
+    use WithFileUploads;
+
     public $title = '';
 
     public $description = '';
@@ -21,7 +24,11 @@ new class extends Component
 
     public $bathroomCount = 1;
 
-    public $currentStep = 'price';
+    public $price = '';
+
+    public $photo;
+
+    public $currentStep = 'category';
 
     public function continueToLocation()
     {
@@ -244,13 +251,34 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
                 </div>
 
-                <button
-                    type="button"
-                    class="relative flex cursor-pointer flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
-                >
-                    <x-icon.photo class="size-[50px]" />
-                    <div class="text-lg font-semibold">Click to upload</div>
-                </button>
+                <div x-data="{ photoPreview: null }">
+                    <input
+                        wire:model="photo"
+                        type="file"
+                        id="photo"
+                        class="hidden"
+                        x-ref="photo"
+                        x-on:change="
+                            const reader = new FileReader()
+                            reader.onload = (e) => {
+                                photoPreview = e.target.result
+                            }
+                            reader.readAsDataURL($refs.photo.files[0])
+                        "
+                    />
+
+                    <button
+                        type="button"
+                        @click="$refs.photo.click()"
+                        class="relative flex w-full cursor-pointer flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
+                    >
+                        <x-icon.photo class="size-[50px]" />
+                        <div class="text-lg font-semibold">Click to upload</div>
+                        <div x-show="photoPreview" class="absolute inset-0 h-full w-full overflow-hidden">
+                            <img fill class="object-cover" :src="photoPreview" alt="House" />
+                        </div>
+                    </button>
+                </div>
             </form>
 
             <x-slot:footer>
@@ -276,10 +304,15 @@ new class extends Component
                     @enderror
                 </div>
 
-                <hr>
+                <hr />
 
                 <div>
-                    <x-input wire:model="description" label="Description" :has-error="$errors->has('description')" required />
+                    <x-input
+                        wire:model="description"
+                        label="Description"
+                        :has-error="$errors->has('description')"
+                        required
+                    />
 
                     @error('description')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
