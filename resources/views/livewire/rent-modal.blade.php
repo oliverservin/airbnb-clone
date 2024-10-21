@@ -326,7 +326,7 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-input wire:model="title" label="Título" :has-error="$errors->has('title')"/>
+                    <x-input wire:model="title" label="Título" :has-error="$errors->has('title')" />
 
                     @error('title')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
@@ -336,11 +336,7 @@ new class extends Component
                 <hr />
 
                 <div>
-                    <x-input
-                        wire:model="description"
-                        label="Description"
-                        :has-error="$errors->has('description')"
-                    />
+                    <x-input wire:model="description" label="Description" :has-error="$errors->has('description')" />
 
                     @error('description')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
@@ -364,7 +360,7 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-price-input wire:model="price" label="Precio" :has-error="$errors->has('price')"/>
+                    <x-price-input wire:model="price" label="Precio" :has-error="$errors->has('price')" />
 
                     @error('price')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
