@@ -7,10 +7,7 @@ name('home');
 ?>
 
 <x-layouts.app>
-    @volt('pages.index')
-        <div>
-            <!-- // -->
-            &nbsp;
-        </div>
-    @endvolt
+    <x-container>
+        <livewire:listings-list />
+    </x-container>
 </x-layouts.app>
