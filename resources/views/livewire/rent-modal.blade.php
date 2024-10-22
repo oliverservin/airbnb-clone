@@ -88,7 +88,7 @@ new class extends Component
         $listing = Auth::user()->listings()->create([
             'title' => $this->title,
             'description' => $this->description,
-            'category' => $this->category,
+            'category_label' => $this->category,
             'rooms' => $this->rooms,
             'bathrooms' => $this->bathrooms,
             'guests' => $this->guests,
@@ -161,58 +161,32 @@ new class extends Component
                     wire:ignore
                     x-data="{
                         countries: [],
-                        map: null,
-                        marker: null,
+                        listingCountry: null,
                         initCountries() {
-                            fetch('https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json')
-                                .then(response => response.json())
-                                .then(data => {
-                                    this.countries = data;
+                            fetch(
+                                'https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json',
+                            )
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    this.countries = data
                                 })
-                                .catch(error => {
-                                    console.error('Error fetching countries:', error);
-                                });
                         },
-                        initMap() {
-                            this.map = L.map('map').setView([0, 0], 2);
-                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                attribution: '&copy; <a href=\'https://www.openstreetmap.org/copyright\'>OpenStreetMap</a> contributors'
-                            }).addTo(this.map);
-                        },
-                        updateMap() {
-                            if (!$wire.location) return;
-                            const country = this.countries.find(c => c.cca2 === $wire.location);
-                            if (country && country.latlng) {
-                                this.map.setView(country.latlng, 4);
-
-                                // Remove existing marker if any
-                                if (this.marker) {
-                                    this.map.removeLayer(this.marker);
-                                }
-
-                                // Add new marker
-                                this.marker = L.marker(country.latlng).addTo(this.map);
-                            }
-                        },
-                        getCountryNameInSpanish(country) {
-                            return country.translations.spa?.common || country.name.common;
-                        }
                     }"
-                    x-init="
-                        initCountries()
-                        $nextTick(() => initMap())
-                    "
+                    x-init="initCountries()"
                     class="flex flex-col gap-8"
                 >
                     <div class="relative">
                         <select
                             wire:model="location"
-                            @change="updateMap"
+                            @change="listingCountry = countries.find((c) => c.cca2 === $wire.location)"
                             class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
                         >
                             <option value="" disabled>Selecciona un país</option>
                             <template x-for="country in countries" :key="country.cca2">
-                                <option :value="country.cca2" x-text="getCountryNameInSpanish(country)"></option>
+                                <option
+                                    :value="country.cca2"
+                                    x-text="country.translations.spa?.common || country.name.common"
+                                ></option>
                             </template>
                         </select>
                         <div class="absolute inset-y-0 right-0 mr-3 flex items-center">
@@ -220,7 +194,7 @@ new class extends Component
                         </div>
                     </div>
 
-                    <div id="map" class="h-[35vh] rounded-lg"></div>
+                    <x-listing-map x-model="listingCountry" wire:ignore />
                 </div>
 
                 @error('location')

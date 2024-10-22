@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('photo_path')->nullable();
-            $table->string('category')->nullable();
+            $table->string('category_label')->nullable();
             $table->integer('rooms');
             $table->integer('bathrooms');
             $table->integer('guests');

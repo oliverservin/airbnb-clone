@@ -2,6 +2,7 @@
 
 <a
     {{ $attributes }}
+    href="{{ route('listings.show', ['listing' => $listing]) }}"
     class="group col-span-1 cursor-pointer"
     x-data="{ countries: [], country: '' }"
     x-init="
@@ -12,6 +13,7 @@
                 country = countries.find(c => c.cca2 === @js($listing->location));
             })
     "
+    wire:navigate
 >
     <div class="flex w-full flex-col gap-2">
         <div class="relative aspect-square w-full overflow-hidden rounded-xl bg-neutral-200">
