@@ -194,7 +194,7 @@ new class extends Component
                         </div>
                     </div>
 
-                    <x-listing-map x-model="listingCountry" wire:ignore />
+                    <x-map x-model="listingCountry" wire:ignore />
                 </div>
 
                 @error('location')

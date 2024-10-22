@@ -34,10 +34,10 @@
             class="text-lg font-semibold"
             x-text="country ? (country.region + ', ' + country.name.common) : ''"
         ></div>
-        <div class="font-light text-neutral-500">{{ $listing->category }}</div>
+        <div class="font-light text-neutral-500">{{ $listing->category->label }}</div>
         <div class="flex flex-row items-center gap-1">
             <div class="font-semibold">$ {{ $listing->price }}</div>
-            <div class="font-light">night</div>
+            <div class="font-light">noche</div>
         </div>
     </div>
 </a>

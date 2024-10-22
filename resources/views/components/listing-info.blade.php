@@ -35,5 +35,5 @@
         {{ $listing->description }}
     </div>
     <hr />
-    <x-listing-map x-model="listingCountry" wire:ignore />
+    <x-map x-model="listingCountry" wire:ignore />
 </div>
