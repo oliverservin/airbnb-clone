@@ -13,6 +13,8 @@
         updateMap() {
             if (!this.country) return;
 
+            if (!this.map) this.initMap();
+
             this.map.setView(this.country.latlng, 4);
 
             // Remove existing marker if any

@@ -14,7 +14,7 @@ name('listings.show');
                 <div class="mt-6 grid grid-cols-1 md:grid-cols-7 md:gap-10">
                     <x-listing-info :listing="$listing" />
                     <div class="order-first mb-10 md:order-last md:col-span-3">
-                        <x-listing-reservation />
+                        <x-listing-reservation :listing="$listing" />
                     </div>
                 </div>
             </div>
