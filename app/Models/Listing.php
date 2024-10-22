@@ -31,6 +31,11 @@ class Listing extends Model
         return $this->belongsTo(Category::class, 'category_label', 'label');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
     public function updatePhoto(UploadedFile $photo)
     {
         tap($this->photo_path, function ($previous) use ($photo) {
