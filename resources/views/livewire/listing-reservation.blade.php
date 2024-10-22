@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
@@ -10,33 +11,50 @@ new class extends Component
 
     public $price;
 
-    public $reservationDateRange = [];
+    public $disabledDates;
 
-    public function reserve() {
-        [$startDate, $endDate] = $this->reservationDateRange;
+    #[Validate(['required', 'date', 'after_or_equal:today'])]
+    public $startDate;
 
-        $diffInDays = Carbon::parse($startDate)->diffInDays(Carbon::parse($endDate));
+    #[Validate(['required', 'date', 'after_or_equal:start_date'])]
+    public $endDate;
+
+    public function reserve()
+    {
+        $this->validate();
+
+        $diffInDays = Carbon::parse($this->startDate)->diffInDays(Carbon::parse($this->endDate));
+
         $totalPrice = $diffInDays * $this->listing->price;
 
         $this->listing->reservations()->create([
             'user_id' => Auth::user()->id,
             'price' => $totalPrice,
-            'start_date' => $startDate,
-            'end_date' => $endDate,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
         ]);
     }
 
     public function mount()
     {
         $this->price = $this->listing->price;
+
+        $this->disabledDates = $this->listing->reservations->map(function ($reservation) {
+            return [
+                'from' => $reservation->start_date,
+                'to' => $reservation->end_date,
+            ];
+        });
     }
 }; ?>
 
 <div
     x-data="{
+        reservationDateRange: [],
+        disabledDates: [],
         daysCount: 1,
         getTotalPrice() {
-            let [start, end] = $wire.reservationDateRange;
+            let [start, end] = this.reservationDateRange
 
             if (start && end) {
                 let diffTime = Math.abs(new Date(end) - new Date(start))
@@ -44,6 +62,16 @@ new class extends Component
             }
 
             return this.daysCount * $wire.price
+        },
+        init() {
+            this.disabledDates = $wire.disabledDates
+
+            this.$watch('reservationDateRange', () => {
+                let [start, end] = this.reservationDateRange
+
+                $wire.startDate = start
+                $wire.endDate = end
+            })
         },
     }"
     class="overflow-hidden rounded-xl border-[1px] border-neutral-200 bg-white"
@@ -55,7 +83,15 @@ new class extends Component
     <hr />
     <form wire:submit="reserve">
         <div class="p-4">
-            <x-calendar-input wire:model="reservationDateRange" />
+            <x-calendar-input wire:ignore x-model="reservationDateRange" />
+
+            @error('startDate')
+                <p class="mt-2 text-rose-500">{{ $message }}</p>
+            @enderror
+
+            @error('endDate')
+                <p class="mt-2 text-rose-500">{{ $message }}</p>
+            @enderror
         </div>
         <hr />
         <div class="p-4">

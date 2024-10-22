@@ -8,13 +8,16 @@
                 mode: 'range',
                 minDate: 'today',
                 dateFormat: 'Y-m-d',
+                disable: this.disabledDates || [],
                 defaultDate: this.dateRange,
                 onChange: (date, dateString) => {
                     this.dateRange = dateString.split(' to ')
                 },
             })
 
-            this.$watch('dateRange', () => flatpickrInstance.setDate(this.dateRange))
+            this.$watch('dateRange', () =>
+                flatpickrInstance.setDate(this.dateRange),
+            )
         },
     }"
     x-modelable="dateRange"
