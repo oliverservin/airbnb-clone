@@ -15,13 +15,7 @@
     x-init="initFlatpickr()"
     class="flex justify-center"
 >
-    <input
-        class="hidden"
-        x-ref="date"
-        type="text"
-        id="date"
-        name="date"
-        placeholder="Select a date"
-        x-model="date"
-    />
+    <div class="w-full">
+        <input class="hidden" x-ref="date" type="text" id="date" name="date" placeholder="Select a date" x-model="date" />
+    </div>
 </div>

@@ -6,7 +6,9 @@
         <div class="font-light text-neutral-600">noche</div>
     </div>
     <hr />
-    <x-calendar-input />
+    <div class="p-4">
+        <x-calendar-input />
+    </div>
     <hr />
     <div class="p-4">
         <x-button>Reservar</x-button>

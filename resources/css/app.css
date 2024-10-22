@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.flatpickr-calendar.inline {
+  top: 0;
+}
+
+.flatpickr-calendar {
+  @apply w-full shadow-none;
+}
+
+.flatpickr-rContainer {
+  @apply w-full;
+}
+
+.flatpickr-weekdays .flatpickr-weekdaycontainer {
+  @apply grid grid-cols-7;
+}
+
+.flatpickr-days {
+  @apply w-full;
+}
+
+.dayContainer {
+  @apply w-full min-w-full max-w-full;
+}
+
+.flatpickr-day {
+  @apply max-w-full;
+}
+
+.flatpickr-current-month {
+  @apply flex items-center justify-center pt-0;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  @apply appearance-none rounded-md text-base font-normal text-neutral-800;
+}
+
+.numInputWrapper {
+  @apply rounded-md;
+}
+
+.flatpickr-current-month input.cur-year {
+  @apply text-base font-normal text-neutral-800;
+}
+
+.flatpickr-months {
+  @apply mb-4;
+}
+
+.flatpickr-calendar.arrowTop:before {
+  @apply hidden;
+}

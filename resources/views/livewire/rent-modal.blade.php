@@ -310,7 +310,7 @@ new class extends Component
                 <hr />
 
                 <div>
-                    <x-input wire:model="description" label="Description" :has-error="$errors->has('description')" />
+                    <x-input wire:model="description" label="Descripción" :has-error="$errors->has('description')" />
 
                     @error('description')
                         <p class="mt-2 text-rose-500">{{ $message }}</p>
