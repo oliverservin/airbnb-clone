@@ -1,21 +1,20 @@
 <div
     x-data="{
-        date: null,
-        config: {
-            inline: true,
-            enableTime: false,
-            dateFormat: 'Y-m-d',
-            locale: 'es',
-            mode: 'range',
-        },
-        initFlatpickr() {
-            flatpickr(this.$refs.date, this.config)
+        dateRange: [],
+        init() {
+            let flatpickrInstance = flatpickr(this.$refs.date, {
+                inline: true,
+                mode: 'range',
+                dateFormat: 'Y/m/d',
+                defaultDate: this.dateRange,
+                onChange: (date, dateString) => {
+                    this.dateRange = dateString.split(' to ')
+                },
+            })
+
+            this.$watch('dateRange', () => flatpickrInstance.setDate(this.dateRange))
         },
     }"
-    x-init="initFlatpickr()"
-    class="flex justify-center"
 >
-    <div class="w-full">
-        <input class="hidden" x-ref="date" type="text" id="date" name="date" placeholder="Select a date" x-model="date" />
-    </div>
+    <input x-ref="date" type="text" class="hidden" readonly />
 </div>
