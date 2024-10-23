@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
@@ -10,6 +11,15 @@ new class extends Component
     public function properties()
     {
         return Auth::user()->listings;
+    }
+
+    public function delete(Listing $listing)
+    {
+        $this->authorize('delete', $listing);
+
+        $listing->delete();
+
+        unset($this->properties);
     }
 }; ?>
 
@@ -22,9 +32,15 @@ new class extends Component
         <div
             class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
         >
-            @foreach ($this->properties as $listing)
-                <x-listing-card :$listing />
-            @endforeach
+            <div class="space-y-2">
+                @foreach ($this->properties as $listing)
+                    <x-listing-card :$listing />
+                @endforeach
+
+                <x-button wire:click="delete({{ $listing->id }})" wire:confirm="¿Estás seguro?" type="button" small>
+                    Eliminar propiedad
+                </x-button>
+            </div>
         </div>
     @else
         <x-empty-state>
