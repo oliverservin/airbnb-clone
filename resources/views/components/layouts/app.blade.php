@@ -39,6 +39,8 @@
             <livewire:rent-modal />
         @endauth
 
+        <livewire:search-modal />
+
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
     </body>

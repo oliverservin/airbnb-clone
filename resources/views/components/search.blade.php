@@ -1,4 +1,8 @@
-<div class="w-full cursor-pointer rounded-full border-[1px] py-2 shadow-sm transition hover:shadow-md md:w-auto">
+<button
+    x-data
+    @click="$dispatch('show-search-modal')"
+    class="w-full cursor-pointer rounded-full border-[1px] py-2 shadow-sm transition hover:shadow-md md:w-auto"
+>
     <div class="flex flex-row items-center justify-between">
         <div class="px-6 text-sm font-semibold">Cualquier lugar</div>
         <div class="hidden flex-1 border-x-[1px] px-6 text-center text-sm font-semibold sm:block">Cualquier semana</div>
@@ -9,4 +13,4 @@
             </div>
         </div>
     </div>
-</div>
+</button>

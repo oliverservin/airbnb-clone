@@ -10,14 +10,44 @@ new class extends Component
     #[Url]
     public $category = '';
 
+    #[Url]
+    public $location = '';
+
+    #[Url]
+    public ?int $guests = null;
+
+    #[Url]
+    public ?int $rooms = null;
+
+    #[Url]
+    public ?int $bathrooms = null;
+
     #[Computed]
     public function listings()
     {
+        $listing = Listing::query();
+
         if ($this->category) {
-            return Listing::where('category_label', '=', $this->category)->get();
+            $listing->where('category_label', '=', $this->category);
         }
 
-        return Listing::all();
+        if ($this->location) {
+            $listing->where('location', '=', $this->location);
+        }
+
+        if ($this->guests) {
+            $listing->where('guests', '>=', $this->guests);
+        }
+
+        if ($this->rooms) {
+            $listing->where('rooms', '>=', $this->rooms);
+        }
+
+        if ($this->bathrooms) {
+            $listing->where('bathrooms', '>=', $this->bathrooms);
+        }
+
+        return $listing->get();
     }
 }; ?>
 
