@@ -1,13 +1,15 @@
 <?php
 
+use App\Models\Listing;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public $listing;
+    public Listing $listing;
 
     public $price;
 
@@ -23,6 +25,12 @@ new class extends Component
     {
         $this->validate();
 
+        if ($this->findReservation()) {
+            throw ValidationException::withMessages([
+                'startDate' => 'Ya existe una reserva para la fecha elegida.',
+            ]);
+        }
+
         $diffInDays = Carbon::parse($this->startDate)->diffInDays(Carbon::parse($this->endDate));
 
         $totalPrice = $diffInDays * $this->listing->price;
@@ -33,6 +41,15 @@ new class extends Component
             'start_date' => $this->startDate,
             'end_date' => $this->endDate,
         ]);
+    }
+
+    protected function findReservation()
+    {
+
+        return $this->listing->reservations()
+            ->where('start_date', '<=', $this->endDate)
+            ->where('end_date', '>=', $this->startDate)
+            ->first();
     }
 
     public function mount()

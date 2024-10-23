@@ -12,4 +12,9 @@ class Reservation extends Model
         'end_date',
         'price',
     ];
+
+    protected $casts = [
+        'start_date' => 'date:Y-m-d',
+        'end_date' => 'date:Y-m-d',
+    ];
 }
