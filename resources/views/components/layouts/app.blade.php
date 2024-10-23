@@ -41,6 +41,5 @@
 
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
-        <div class="pt-18">lkjsdf</div>
     </body>
 </html>

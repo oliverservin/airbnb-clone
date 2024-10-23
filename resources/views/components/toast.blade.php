@@ -18,7 +18,7 @@
             <div class="flex items-start gap-4">
                 <x-icon.check class="size-6 text-green-600" />
 
-                <div class="flex-1 pt-5">
+                <div class="flex-1 pt-0.5">
                     <strong class="block text-sm font-medium text-nautral-900">{notificationText}</strong>
                 </div>
             </div>
