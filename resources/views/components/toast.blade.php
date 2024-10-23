@@ -4,8 +4,8 @@
             $notify(message, {
                 wrapperId: 'FlashMessageWrapper',
                 templateId: 'FlashMessageTemplate',
-                autoClose: 300000,
-                autoRemove: 400000,
+                autoClose: 3000,
+                autoRemove: 4000,
             })
         },
     }"

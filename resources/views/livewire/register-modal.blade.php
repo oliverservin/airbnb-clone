@@ -27,6 +27,8 @@ new class extends Component
 
         Auth::login($user);
 
+        $this->dispatch('toast', message: 'Cuenta registrada');
+
         $this->redirect(route('home'), navigate: true);
     }
 }; ?>

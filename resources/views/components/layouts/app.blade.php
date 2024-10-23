@@ -26,9 +26,9 @@
         @vite('resources/css/app.css')
     </head>
     <body class="h-full antialiased">
-        <x-toast wire:ignore />
-
-        <div x-data x-init="$dispatch('toast', { message: 'Successfully saved!'})"></div>
+        @persist('toast')
+            <x-toast wire:ignore />
+        @endpersist
 
         @guest
             <livewire:login-modal />

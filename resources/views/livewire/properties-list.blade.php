@@ -19,6 +19,8 @@ new class extends Component
 
         $listing->delete();
 
+        $this->dispatch('toast', message: 'Propiedad eliminada');
+
         unset($this->properties);
     }
 }; ?>
@@ -32,15 +34,14 @@ new class extends Component
         <div
             class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
         >
-            <div class="space-y-2">
-                @foreach ($this->properties as $listing)
+            @foreach ($this->properties as $listing)
+                <div wire:key="{{ $listing->id }}" class="space-y-2">
                     <x-listing-card :$listing />
-                @endforeach
-
-                <x-button wire:click="delete({{ $listing->id }})" wire:confirm="¿Estás seguro?" type="button" small>
-                    Eliminar propiedad
-                </x-button>
-            </div>
+                    <x-button wire:click="delete({{ $listing->id }})" wire:confirm="¿Estás seguro?" type="button" small>
+                        Eliminar propiedad
+                    </x-button>
+                </div>
+            @endforeach
         </div>
     @else
         <x-empty-state>

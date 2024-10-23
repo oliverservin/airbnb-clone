@@ -19,6 +19,8 @@ new class extends Component
 
         $reservation->delete();
 
+        $this->dispatch('toast', message: 'Reserva cancelada');
+
         unset($this->reservations);
     }
 }; ?>
@@ -32,15 +34,19 @@ new class extends Component
         <div
             class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
         >
-            <div class="space-y-2">
-                @foreach ($this->reservations as $reservation)
+            @foreach ($this->reservations as $reservation)
+                <div wire:key="{{ $reservation->id }}" class="space-y-2">
                     <x-reservation-card :$reservation />
-                @endforeach
-
-                <x-button wire:click="cancel({{ $reservation->id }})" wire:confirm="¿Estás seguro?" type="button" small>
-                    Cancelar reserva de huésped
-                </x-button>
-            </div>
+                    <x-button
+                        wire:click="cancel({{ $reservation->id }})"
+                        wire:confirm="¿Estás seguro?"
+                        type="button"
+                        small
+                    >
+                        Cancelar reserva de huésped
+                    </x-button>
+                </div>
+            @endforeach
         </div>
     @else
         <x-empty-state>
