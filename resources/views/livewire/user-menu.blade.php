@@ -44,7 +44,7 @@ new class extends Component
         x-show="showDropdown"
         class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4"
     >
-        <div class="flex cursor-pointer flex-col">
+        <div class="flex cursor-pointer flex-col" @click.away="showDropdown = false">
             @guest
                 <x-menu-item @click="$dispatch('show-login-modal'); showDropdown = false;">Iniciar sesión</x-menu-item>
                 <x-menu-item @click="$dispatch('show-register-modal'); showDropdown = false;">Registrarse</x-menu-item>
