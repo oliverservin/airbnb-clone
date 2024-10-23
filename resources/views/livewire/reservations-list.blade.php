@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
@@ -10,6 +11,15 @@ new class extends Component
     public function reservations()
     {
         return Auth::user()->reservations;
+    }
+
+    public function cancel(Reservation $reservation)
+    {
+        $this->authorize('delete', $reservation);
+
+        $reservation->delete();
+
+        unset($this->reservations);
     }
 }; ?>
 
@@ -22,9 +32,15 @@ new class extends Component
         <div
             class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
         >
-            @foreach ($this->reservations as $reservation)
-                <x-reservation-card :$reservation />
-            @endforeach
+            <div class="space-y-2">
+                @foreach ($this->reservations as $reservation)
+                    <x-reservation-card :$reservation />
+                @endforeach
+
+                <x-button wire:click="cancel({{ $reservation->id }})" wire:confirm="¿Estás seguro?" type="button" small>
+                    Cancelar reserva de huésped
+                </x-button>
+            </div>
         </div>
     @else
         <x-empty-state>

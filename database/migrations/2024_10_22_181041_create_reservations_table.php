@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Listing::class);
+            $table->foreignIdFor(User::class)->constrained('users')->cascadeOnDelete();
+            $table->foreignIdFor(Listing::class)->constrained('listings')->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('price');

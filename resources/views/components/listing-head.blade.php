@@ -17,14 +17,22 @@
         {{ $listing->title }}
     </div>
     <div
-        x-text="country ? country.region + ', ' + country.translations.spa?.common || country.name.common : ''"
+        x-text="
+            country
+                ? country.region + ', ' + country.translations.spa?.common ||
+                  country.name.common
+                : ''
+        "
         class="mt-2 font-light text-neutral-500"
     >
         Region, Country
     </div>
 </div>
 
-<div class="relative h-[60vh] w-full overflow-hidden rounded-xl">
-    <img src="{{ $listing->photo_url }}" fill class="w-full object-cover" alt="Image" />
+<div class="relative h-[60vh] w-full overflow-hidden rounded-xl bg-neutral-200">
+    @if ($listing->photo_url)
+        <img src="{{ $listing->photo_url }}" fill class="w-full object-cover" alt="Image" />
+    @endif
+
     <!-- favoritear -->
 </div>
