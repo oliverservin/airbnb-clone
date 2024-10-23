@@ -20,9 +20,9 @@
             <x-avatar />
         </div>
         <div class="flex flex-row items-center gap-4 font-light text-neutral-500">
-            <div>{{ $listing->guests }} {{ str()->of('huesped', $listing->guests) }}</div>
-            <div>{{ $listing->rooms }} {{ str()->of('habitación', $listing->rooms) }}</div>
-            <div>{{ $listing->bathrooms }} {{ str()->of('baño', $listing->bathrooms) }}</div>
+            <div>{{ $listing->guests }} {{ $listing->guests > 1 ? 'huéspedes' : 'huésped' }}</div>
+            <div>{{ $listing->rooms }} {{ $listing->rooms > 1 ? 'habitaciones' : 'habitación' }}</div>
+            <div>{{ $listing->bathrooms }} {{ $listing->bathrooms > 1 ? 'baños' : 'baño' }}</div>
         </div>
     </div>
     <hr />
