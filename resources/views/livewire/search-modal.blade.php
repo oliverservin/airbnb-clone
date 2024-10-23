@@ -1,25 +1,32 @@
 <?php
 
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
+    #[Url]
     public $location = '';
 
-    public $currentStep = 'location';
-
+    #[Url]
     #[Validate(['date', 'after_or_equal:today'])]
     public $startDate;
 
-    #[Validate(['date', 'after_or_equal:start_date'])]
+    #[Url]
+    #[Validate(['date', 'after_or_equal:startDate'])]
     public $endDate;
 
+    #[Url]
     public $guests = 1;
 
+    #[Url]
     public $rooms = 1;
 
+    #[Url]
     public $bathrooms = 1;
+
+    public $currentStep = 'location';
 
     public function continueToDates()
     {
@@ -35,7 +42,7 @@ new class extends Component
     {
         $this->redirect(route('home', [
             'location' => $this->location,
-            'start_date' => $this->startDate,
+            'startDate' => $this->startDate,
             'endDate' => $this->endDate,
             'guests' => $this->guests,
             'rooms' => $this->rooms,
@@ -61,17 +68,20 @@ new class extends Component
                     x-data="{
                         countries: [],
                         listingCountry: null,
-                        initCountries() {
+                        init() {
                             fetch(
                                 'https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json',
                             )
                                 .then((response) => response.json())
                                 .then((data) => {
                                     this.countries = data
+
+                                    if ($wire.location) {
+                                        this.listingCountry = this.countries.find((c) => c.cca2 === $wire.location)
+                                    }
                                 })
                         },
                     }"
-                    x-init="initCountries()"
                     class="flex flex-col gap-8"
                 >
                     <div class="relative">
@@ -84,6 +94,7 @@ new class extends Component
                             <template x-for="country in countries" :key="country.cca2">
                                 <option
                                     :value="country.cca2"
+                                    :selected="country.cca2 === $wire.location"
                                     x-text="country.translations.spa?.common || country.name.common"
                                 ></option>
                             </template>
@@ -114,7 +125,23 @@ new class extends Component
                     <div class="text-2xl font-bold">¿Cuándo planeas ir?</div>
                     <div class="mt-2 font-light text-neutral-500">Asegúrate de que todos estén libres.</div>
                 </div>
-                <div>
+                <div
+                    x-data="{
+                        reservationDateRange: [],
+                        init() {
+                            if ($wire.startDate && $wire.endDate) {
+                                this.reservationDateRange = [$wire.startDate, $wire.endDate]
+                            }
+
+                            this.$watch('reservationDateRange', () => {
+                                let [start, end] = this.reservationDateRange
+
+                                $wire.startDate = start
+                                $wire.endDate = end
+                            })
+                        },
+                    }"
+                >
                     <x-calendar-input wire:ignore x-model="reservationDateRange" />
                 </div>
             </form>

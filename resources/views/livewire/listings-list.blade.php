@@ -22,6 +22,12 @@ new class extends Component
     #[Url]
     public ?int $bathrooms = null;
 
+    #[Url]
+    public $startDate = '';
+
+    #[Url]
+    public $endDate = '';
+
     #[Computed]
     public function listings()
     {
@@ -45,6 +51,13 @@ new class extends Component
 
         if ($this->bathrooms) {
             $listing->where('bathrooms', '>=', $this->bathrooms);
+        }
+
+        if ($this->startDate && $this->endDate) {
+            $listing->whereDoesntHave('reservations', function ($query) {
+                $query->where('start_date', '<=', $this->endDate)
+                    ->where('end_date', '>=', $this->startDate);
+            });
         }
 
         return $listing->get();
