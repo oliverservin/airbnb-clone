@@ -41,6 +41,8 @@ new class extends Component
             'start_date' => $this->startDate,
             'end_date' => $this->endDate,
         ]);
+
+        $this->redirect(route('trips'), navigate: true);
     }
 
     protected function findReservation()

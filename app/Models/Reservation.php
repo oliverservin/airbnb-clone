@@ -17,4 +17,9 @@ class Reservation extends Model
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
     ];
+
+    public function listing()
+    {
+        return $this->belongsTo(Listing::class);
+    }
 }
