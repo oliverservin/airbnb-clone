@@ -54,6 +54,7 @@ new class extends Component
                 <x-menu-item :href="route('reservations')" wire:navigate>Mis reservas</x-menu-item>
                 <x-menu-item :href="route('properties')" wire:navigate>Mis propiedades</x-menu-item>
                 <x-menu-item @click="$dispatch('show-rent-modal')">Pon tu casa en StayStop</x-menu-item>
+                <hr>
                 <x-menu-item wire:click="logout">Cerrar sesión</x-menu-item>
             @endguest
         </div>
