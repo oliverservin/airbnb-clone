@@ -21,9 +21,15 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 
+        <script defer src="https://unpkg.com/alpinejs-notify@latest/dist/notifications.min.js"></script>
+
         @vite('resources/css/app.css')
     </head>
     <body class="h-full antialiased">
+        <x-toast wire:ignore />
+
+        <div x-data x-init="$dispatch('toast', { message: 'Successfully saved!'})"></div>
+
         @guest
             <livewire:login-modal />
             <livewire:register-modal />
@@ -35,5 +41,6 @@
 
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
+        <div class="pt-18">lkjsdf</div>
     </body>
 </html>

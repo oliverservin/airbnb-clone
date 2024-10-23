@@ -100,6 +100,8 @@ new class extends Component
             $listing->updatePhoto($this->photo);
         }
 
+        $this->dispatch('toast', message: '¡Propiedad publicada!');
+
         $this->redirect(route('home'), navigate: true);
     }
 
