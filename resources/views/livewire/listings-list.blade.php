@@ -1,31 +1,24 @@
 <?php
 
 use App\Models\Listing;
+use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Url;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    #[Url]
     public $category = '';
 
-    #[Url]
     public $location = '';
 
-    #[Url]
     public ?int $guests = null;
 
-    #[Url]
     public ?int $rooms = null;
 
-    #[Url]
     public ?int $bathrooms = null;
 
-    #[Url]
     public $startDate = '';
 
-    #[Url]
     public $endDate = '';
 
     #[Computed]
@@ -61,6 +54,17 @@ new class extends Component
         }
 
         return $listing->get();
+    }
+
+    public function mount()
+    {
+        $this->category = Request::get('category');
+        $this->location = Request::get('location');
+        $this->guests = Request::get('guests');
+        $this->rooms = Request::get('rooms');
+        $this->bathrooms = Request::get('bathrooms');
+        $this->startDate = Request::get('startDate');
+        $this->endDate = Request::get('endDate');
     }
 }; ?>
 

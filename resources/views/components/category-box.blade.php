@@ -1,7 +1,7 @@
 @props(['category'])
 
 <a
-    href="{{ route('home', ['category' => $category->label]) }}"
+    href="{{ route('home', ['category' => $category->label] + request()->only('location', 'guests', 'rooms', 'bathrooms', 'startDate', 'endDate')) }}"
     wire:navigate
     @class([
         'flex cursor-pointer flex-col items-center justify-center gap-2 border-b-2 p-3 transition hover:text-neutral-800',

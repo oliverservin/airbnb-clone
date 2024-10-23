@@ -1,22 +1,18 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Url;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    #[Url]
     public ?string $location = null;
 
-    #[Url]
     public ?string $startDate = null;
 
-    #[Url]
     public ?string $endDate = null;
 
-    #[Url]
     public ?int $guests = null;
 
     #[Computed]
@@ -25,6 +21,14 @@ new class extends Component
         return $this->startDate && $this->endDate
             ? Carbon::parse($this->startDate)->diffInDays(Carbon::parse($this->endDate))
             : null;
+    }
+
+    public function mount()
+    {
+        $this->location = Request::get('location');
+        $this->guests = Request::get('guests');
+        $this->startDate = Request::get('startDate');
+        $this->endDate = Request::get('endDate');
     }
 } ?>
 

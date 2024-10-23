@@ -1,30 +1,25 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    #[Url]
     public $location = '';
 
-    #[Url]
     #[Validate(['date', 'after_or_equal:today'])]
     public $startDate;
 
-    #[Url]
     #[Validate(['date', 'after_or_equal:startDate'])]
     public $endDate;
 
-    #[Url]
-    public $guests = 1;
+    public $guests;
 
-    #[Url]
-    public $rooms = 1;
+    public $rooms;
 
-    #[Url]
-    public $bathrooms = 1;
+    public $bathrooms;
 
     public $currentStep = 'location';
 
@@ -48,6 +43,16 @@ new class extends Component
             'rooms' => $this->rooms,
             'bathrooms' => $this->bathrooms,
         ]), navigate: true);
+    }
+
+    public function mount()
+    {
+        $this->location = Request::get('location');
+        $this->guests = Request::get('guests', 1);
+        $this->rooms = Request::get('rooms', 1);
+        $this->bathrooms = Request::get('bathrooms', 1);
+        $this->startDate = Request::get('startDate');
+        $this->endDate = Request::get('endDate');
     }
 } ?>
 
@@ -77,7 +82,9 @@ new class extends Component
                                     this.countries = data
 
                                     if ($wire.location) {
-                                        this.listingCountry = this.countries.find((c) => c.cca2 === $wire.location)
+                                        this.listingCountry = this.countries.find(
+                                            (c) => c.cca2 === $wire.location,
+                                        )
                                     }
                                 })
                         },
