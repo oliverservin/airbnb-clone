@@ -1,6 +1,6 @@
 @props(['disabled' => false, 'outline' => false, 'small' => false])
 
-@isset($href)
+@if($attributes->has('href'))
     <a
         {{ $attributes }}
         {{ $disabled ? 'disabled' : '' }}
