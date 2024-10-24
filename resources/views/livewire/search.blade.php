@@ -33,10 +33,10 @@ new class extends Component
     }
 } ?>
 
-<div>
+<div class="w-full md:w-auto">
     <button
         @click="$dispatch('show-search-modal')"
-        class="w-full cursor-pointer rounded-full border-[1px] py-2 shadow-sm transition hover:shadow-md md:w-auto"
+        class="w-full rounded-full border-[1px] py-2 shadow-sm transition hover:shadow-md"
     >
         <div class="flex flex-row items-center justify-between">
             <div class="px-6 text-sm font-semibold">

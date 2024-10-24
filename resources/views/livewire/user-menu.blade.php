@@ -25,16 +25,16 @@ new class extends Component
             @else
                 @click="$dispatch('show-login-modal')"
             @endauth
-            class="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 md:block"
+            class="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 lg:block"
         >
             Pon tu casa en StayStop
         </button>
         <button
             @click="showDropdown = !showDropdown"
-            class="flex cursor-pointer flex-row items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1"
+            class="flex cursor-pointer flex-row items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md lg:px-2 lg:py-1"
         >
             <x-icon.bars class="size-4" />
-            <div class="hidden md:block">
+            <div class="hidden lg:block">
                 <x-avatar />
             </div>
         </button>
@@ -42,7 +42,7 @@ new class extends Component
     <div
         x-cloak
         x-show="showDropdown"
-        class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4"
+        class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-3/4"
     >
         <div class="flexflex-col" @click.away="showDropdown = false">
             @guest
