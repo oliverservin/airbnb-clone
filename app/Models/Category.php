@@ -11,77 +11,93 @@ class Category extends Model
 
     protected $rows = [
         [
-            'label' => 'Playa',
+            'name' => 'Playa',
+            'slug' => 'beach',
             'icon' => 'beach',
             'description' => '¡Esta propiedad está cerca de la playa!',
+
         ],
         [
-            'label' => 'Molinos',
+            'name' => 'Molinos',
+            'slug' => 'windmills',
             'icon' => 'windmill',
             'description' => '¡Esta propiedad tiene molinos de viento!',
         ],
         [
-            'label' => 'Moderno',
+            'name' => 'Moderno',
+            'slug' => 'modern',
             'icon' => 'villa',
             'description' => '¡Esta propiedad es moderna!'
         ],
         [
-            'label' => 'Campo',
+            'name' => 'Campo',
+            'slug' => 'countryside',
             'icon' => 'mountain',
             'description' => '¡Esta propiedad está en el campo!'
         ],
         [
-            'label' => 'Piscinas',
+            'name' => 'Piscinas',
+            'slug' => 'pools',
             'icon' => 'pool',
             'description' => '¡Esta propiedad tiene una hermosa piscina!'
         ],
         [
-            'label' => 'Islas',
+            'name' => 'Islas',
+            'slug' => 'islands',
             'icon' => 'island',
             'description' => '¡Esta propiedad está en una isla!'
         ],
         [
-            'label' => 'Lago',
+            'name' => 'Lago',
+            'slug' => 'lake',
             'icon' => 'boat-fishing',
             'description' => '¡Esta propiedad está cerca de un lago!'
         ],
         [
-            'label' => 'Esquí',
+            'name' => 'Esquí',
+            'slug' => 'skiing',
             'icon' => 'skiing',
             'description' => '¡Esta propiedad tiene actividades de esquí!'
         ],
         [
-            'label' => 'Castillos',
+            'name' => 'Castillos',
+            'slug' => 'castles',
             'icon' => 'castle',
             'description' => '¡Esta propiedad es un castillo antiguo!'
         ],
         [
-            'label' => 'Cuevas',
+            'name' => 'Cuevas',
+            'slug' => 'caves',
             'icon' => 'cave-entrance',
             'description' => '¡Esta propiedad está en una cueva espeluznante!'
         ],
         [
-            'label' => 'Acampada',
+            'name' => 'Acampada',
+            'slug' => 'camping',
             'icon' => 'forest-camp',
             'description' => '¡Esta propiedad ofrece actividades de campamento!'
         ],
         [
-            'label' => 'Ártico',
+            'name' => 'Ártico',
+            'slug' => 'artic',
             'icon' => 'snow',
             'description' => '¡Esta propiedad está en un entorno ártico!'
         ],
         [
-            'label' => 'Desierto',
+            'name' => 'Desierto',
+            'slug' => 'desert',
             'icon' => 'cactus',
             'description' => '¡Esta propiedad está en el desierto!'
         ],
         [
-            'label' => 'Graneros',
+            'name' => 'Graneros',
+            'slug' => 'barns',
             'icon' => 'barn',
             'description' => '¡Esta propiedad está en un granero!'
         ],
         [
-            'label' => 'Lujo',
+            'name' => 'Lujo',
+            'slug' => 'lux',
             'icon' => 'diamond',
             'description' => '¡Esta propiedad es nueva y lujosa!'
         ]

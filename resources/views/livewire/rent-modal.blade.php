@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
@@ -17,7 +17,7 @@ new class extends Component
 
     public $category = '';
 
-    public $location = '';
+    public $country = '';
 
     public $guests = 1;
 
@@ -31,19 +31,19 @@ new class extends Component
 
     public $currentStep = 'category';
 
-    public function continueToLocation()
+    public function continueToCountry()
     {
         $this->validate([
-            'category' => ['required', 'exists:App\Models\Category,label'],
+            'category' => ['required', 'exists:App\Models\Category,slug'],
         ]);
 
-        $this->currentStep = 'location';
+        $this->currentStep = 'country';
     }
 
     public function continueToInfo()
     {
         $this->validate([
-            'location' => ['required'],
+            'country' => ['required'],
         ]);
 
         $this->currentStep = 'info';
@@ -88,11 +88,11 @@ new class extends Component
         $listing = Auth::user()->listings()->create([
             'title' => $this->title,
             'description' => $this->description,
-            'category_label' => $this->category,
+            'category_slug' => $this->category,
             'rooms' => $this->rooms,
             'bathrooms' => $this->bathrooms,
             'guests' => $this->guests,
-            'location' => $this->location,
+            'country_code' => $this->country,
             'price' => $this->price,
         ]);
 
@@ -110,7 +110,20 @@ new class extends Component
     {
         return Category::all();
     }
-}; ?>
+
+    #[Computed]
+    public function countries()
+    {
+        return Country::all();
+    }
+
+    public function getSelectedCenter()
+    {
+        $country = Country::where('code', $this->country)->first();
+
+        return $country?->latlng;
+    }
+} ?>
 
 <div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
@@ -119,7 +132,7 @@ new class extends Component
         </x-slot>
 
         @if ($currentStep === 'category')
-            <form id="selectCategoryForm" wire:submit="continueToLocation" class="flex flex-col gap-8">
+            <form id="selectCategoryForm" wire:submit="continueToCountry" class="flex flex-col gap-8">
                 <div>
                     <div class="text-2xl font-bold">¿Cuál de estas describe mejor tu lugar?</div>
                     <div class="mt-2 font-light text-neutral-500">Elige una categoría.</div>
@@ -132,9 +145,9 @@ new class extends Component
                                 wire:model="category"
                                 name="category"
                                 :icon="$category->icon"
-                                :value="$category->label"
+                                :value="$category->slug"
                             >
-                                {{ $category->label }}
+                                {{ $category->name }}
                             </x-category-input>
                         </div>
                     @endforeach
@@ -152,54 +165,34 @@ new class extends Component
             </x-slot>
         @endif
 
-        @if ($currentStep === 'location')
-            <form id="selectLocationForm" wire:submit="continueToInfo" class="flex flex-col gap-8">
+        @if ($currentStep === 'country')
+            <form id="selectCountryForm" wire:submit="continueToInfo" class="flex flex-col gap-8">
                 <div>
                     <div class="text-2xl font-bold">¿Dónde se encuentra su casa?</div>
                     <div class="mt-2 font-light text-neutral-500">Ayuda a tus invitados a encontrarte.</div>
                 </div>
 
-                <div
-                    wire:ignore
-                    x-data="{
-                        countries: [],
-                        listingCountry: null,
-                        initCountries() {
-                            fetch(
-                                'https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json',
-                            )
-                                .then((response) => response.json())
-                                .then((data) => {
-                                    this.countries = data
-                                })
-                        },
-                    }"
-                    x-init="initCountries()"
-                    class="flex flex-col gap-8"
-                >
+                <div x-data="{ selectedCenter: null }" class="flex flex-col gap-8">
                     <div class="relative">
                         <select
-                            wire:model="location"
-                            @change="listingCountry = countries.find((c) => c.cca2 === $wire.location)"
+                            wire:model="country"
+                            @change="selectedCenter = await $wire.getSelectedCenter()"
                             class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
                         >
                             <option value="" disabled>Selecciona un país</option>
-                            <template x-for="country in countries" :key="country.cca2">
-                                <option
-                                    :value="country.cca2"
-                                    x-text="country.translations.spa?.common || country.name.common"
-                                ></option>
-                            </template>
+                            @foreach ($this->countries as $country)
+                                <option value="{{ $country->code }}">{{ $country->name }}</option>
+                            @endforeach
                         </select>
                         <div class="absolute inset-y-0 right-0 mr-3 flex items-center">
                             <x-icon.chevron-up-down class="size-6" />
                         </div>
                     </div>
 
-                    <x-map x-model="listingCountry" wire:ignore />
+                    <x-map x-model="selectedCenter" wire:ignore />
                 </div>
 
-                @error('location')
+                @error('country')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </form>
@@ -207,7 +200,7 @@ new class extends Component
             <x-slot:footer>
                 <div class="flex w-full flex-row items-center gap-4">
                     <x-button type="button" @click="$wire.set('currentStep', 'category')" outline>Regresar</x-button>
-                    <x-button type="submit" form="selectLocationForm">Continuar</x-button>
+                    <x-button type="submit" form="selectCountryForm">Continuar</x-button>
                 </div>
             </x-slot>
         @endif
@@ -243,7 +236,7 @@ new class extends Component
 
             <x-slot:footer>
                 <div class="flex w-full flex-row items-center gap-4">
-                    <x-button type="button" @click="$wire.set('currentStep', 'location')" outline>Regresar</x-button>
+                    <x-button type="button" @click="$wire.set('currentStep', 'country')" outline>Regresar</x-button>
                     <x-button type="submit" form="infoForm">Continuar</x-button>
                 </div>
             </x-slot>

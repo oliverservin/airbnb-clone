@@ -1,13 +1,15 @@
 <?php
 
+use App\Models\Country;
 use Illuminate\Support\Facades\Request;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public $location = '';
+    public $country = '';
 
     #[Validate(['date', 'after_or_equal:today'])]
     public $startDate;
@@ -21,7 +23,7 @@ new class extends Component
 
     public $bathrooms;
 
-    public $currentStep = 'location';
+    public $currentStep = 'country';
 
     public function continueToDates()
     {
@@ -36,7 +38,7 @@ new class extends Component
     public function filter()
     {
         $this->redirect(route('home', [
-            'location' => $this->location,
+            'country' => $this->country,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
             'guests' => $this->guests,
@@ -47,12 +49,25 @@ new class extends Component
 
     public function mount()
     {
-        $this->location = Request::get('location');
+        $this->country = Request::get('country');
         $this->guests = Request::get('guests', 1);
         $this->rooms = Request::get('rooms', 1);
         $this->bathrooms = Request::get('bathrooms', 1);
         $this->startDate = Request::get('startDate');
         $this->endDate = Request::get('endDate');
+    }
+
+    #[Computed]
+    public function countries()
+    {
+        return Country::all();
+    }
+
+    public function getSelectedCenter()
+    {
+        $country = Country::where('code', $this->country)->first();
+
+        return $country?->latlng;
     }
 } ?>
 
@@ -61,67 +76,41 @@ new class extends Component
         <x-slot:title>
             <div class="text-lg font-semibold">Filtros</div>
         </x-slot>
-        @if ($currentStep === 'location')
-            <form id="locationFilterForm" wire:submit="continueToDates" class="flex flex-col gap-8">
+        @if ($currentStep === 'country')
+            <form id="countryFilterForm" wire:submit="continueToDates" class="flex flex-col gap-8">
                 <div>
                     <div class="text-2xl font-bold">¿A dónde quieres ir?</div>
                     <div class="mt-2 font-light text-neutral-500">Encuentra la ubicación perfecta.</div>
                 </div>
 
-                <div
-                    wire:ignore
-                    x-data="{
-                        countries: [],
-                        listingCountry: null,
-                        init() {
-                            fetch(
-                                'https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json',
-                            )
-                                .then((response) => response.json())
-                                .then((data) => {
-                                    this.countries = data
-
-                                    if ($wire.location) {
-                                        this.listingCountry = this.countries.find(
-                                            (c) => c.cca2 === $wire.location,
-                                        )
-                                    }
-                                })
-                        },
-                    }"
-                    class="flex flex-col gap-8"
-                >
+                <div x-data="{ selectedCenter: null }" class="flex flex-col gap-8">
                     <div class="relative">
                         <select
-                            wire:model="location"
-                            @change="listingCountry = countries.find((c) => c.cca2 === $wire.location)"
+                            wire:model="country"
+                            @change="selectedCenter = await $wire.getSelectedCenter()"
                             class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
                         >
                             <option value="" disabled>Selecciona un país</option>
-                            <template x-for="country in countries" :key="country.cca2">
-                                <option
-                                    :value="country.cca2"
-                                    :selected="country.cca2 === $wire.location"
-                                    x-text="country.translations.spa?.common || country.name.common"
-                                ></option>
-                            </template>
+                            @foreach ($this->countries as $country)
+                                <option value="{{ $country->code }}">{{ $country->name }}</option>
+                            @endforeach
                         </select>
                         <div class="absolute inset-y-0 right-0 mr-3 flex items-center">
                             <x-icon.chevron-up-down class="size-6" />
                         </div>
                     </div>
 
-                    <x-map x-model="listingCountry" wire:ignore />
+                    <x-map x-model="selectedCenter" wire:ignore />
                 </div>
 
-                @error('location')
+                @error('country')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </form>
 
             <x-slot:footer>
                 <div class="flex w-full flex-row items-center gap-4">
-                    <x-button type="submit" form="locationFilterForm">Siguiente</x-button>
+                    <x-button type="submit" form="countryFilterForm">Siguiente</x-button>
                 </div>
             </x-slot>
         @endif
@@ -155,7 +144,7 @@ new class extends Component
 
             <x-slot:footer>
                 <div class="flex w-full flex-row items-center gap-4">
-                    <x-button type="button" @click="$wire.set('currentStep', 'location')" outline>Regresar</x-button>
+                    <x-button type="button" @click="$wire.set('currentStep', 'country')" outline>Regresar</x-button>
                     <x-button type="submit" form="dateFilterForm">Siguiente</x-button>
                 </div>
             </x-slot>

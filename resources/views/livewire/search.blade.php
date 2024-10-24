@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Computed;
@@ -7,7 +8,7 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public ?string $location = null;
+    public ?Country $country = null;
 
     public ?string $startDate = null;
 
@@ -25,7 +26,7 @@ new class extends Component
 
     public function mount()
     {
-        $this->location = Request::get('location');
+        $this->country = Country::where('code', Request::get('country'))->first();
         $this->guests = Request::get('guests');
         $this->startDate = Request::get('startDate');
         $this->endDate = Request::get('endDate');
@@ -39,7 +40,7 @@ new class extends Component
     >
         <div class="flex flex-row items-center justify-between">
             <div class="px-6 text-sm font-semibold">
-                {{ $location ?? 'Cualquier lugar' }}
+                {{ $country->name ?? 'Cualquier lugar' }}
             </div>
             <div class="hidden flex-1 border-x-[1px] px-6 text-center text-sm font-semibold sm:block">
                 @if ($this->duration)

@@ -1,19 +1,6 @@
 @props(['listing'])
 
-<div
-    x-data="{ countries: [], listingCountry: null }"
-    x-init="
-        fetch(
-            'https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json',
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                countries = data
-                listingCountry = countries.find((c) => c.cca2 === @js($listing->location))
-            })
-    "
-    class="col-span-4 flex flex-col gap-8"
->
+<div x-data="{ listingCenter: @js($listing->country->latlng) }" class="col-span-4 flex flex-col gap-8">
     <div class="flex flex-col gap-2">
         <div class="flex flex-row items-center gap-2 text-xl font-semibold">
             <div>Hosted by {{ $listing->user->name }}</div>
@@ -35,5 +22,5 @@
         {{ $listing->description }}
     </div>
     <hr />
-    <x-map x-model="listingCountry" wire:ignore />
+    <x-map x-model="listingCenter" wire:ignore />
 </div>

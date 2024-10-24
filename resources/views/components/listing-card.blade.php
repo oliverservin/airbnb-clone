@@ -3,18 +3,7 @@
 <a
     {{ $attributes }}
     href="{{ route('listings.show', ['listing' => $listing]) }}"
-    class="group col-span-1 cursor-pointer"
-    x-data="{ countries: [], country: '' }"
-    x-init="
-        fetch(
-            'https://cdn.jsdelivr.net/gh/mledoze/countries@master/dist/countries.json',
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                countries = data
-                country = countries.find((c) => c.cca2 === @js($listing->location))
-            })
-    "
+    class="group col-span-1"
     wire:navigate
 >
     <div class="flex w-full flex-col gap-2">
@@ -32,11 +21,8 @@
                 <!-- botón para favoritear -->
             </div>
         </div>
-        <div
-            class="text-lg font-semibold"
-            x-text="country ? country.region + ', ' + country.name.common : ''"
-        ></div>
-        <div class="font-light text-neutral-500">{{ $listing->category->label }}</div>
+        <div class="text-lg font-semibold">{{ $listing->country?->region.', '.$listing->country?->name }}</div>
+        <div class="font-light text-neutral-500">{{ $listing->category->name }}</div>
         <div class="flex flex-row items-center gap-1">
             <div class="font-semibold">$ {{ $listing->price }}</div>
             <div class="font-light">noche</div>

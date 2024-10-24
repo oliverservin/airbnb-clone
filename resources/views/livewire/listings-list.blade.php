@@ -9,7 +9,7 @@ new class extends Component
 {
     public $category = '';
 
-    public $location = '';
+    public $country = '';
 
     public ?int $guests = null;
 
@@ -27,11 +27,11 @@ new class extends Component
         $listing = Listing::query();
 
         if ($this->category) {
-            $listing->where('category_label', '=', $this->category);
+            $listing->where('category_slug', '=', $this->category);
         }
 
-        if ($this->location) {
-            $listing->where('location', '=', $this->location);
+        if ($this->country) {
+            $listing->where('country_code', '=', $this->country);
         }
 
         if ($this->guests) {
@@ -59,7 +59,7 @@ new class extends Component
     public function mount()
     {
         $this->category = Request::get('category');
-        $this->location = Request::get('location');
+        $this->country = Request::get('country');
         $this->guests = Request::get('guests');
         $this->rooms = Request::get('rooms');
         $this->bathrooms = Request::get('bathrooms');

@@ -13,11 +13,11 @@ class Listing extends Model
         'title',
         'description',
         'photo_path',
-        'category_label',
+        'category_slug',
         'rooms',
         'bathrooms',
         'guests',
-        'location',
+        'country_code',
         'price'
     ];
 
@@ -28,7 +28,12 @@ class Listing extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_label', 'label');
+        return $this->belongsTo(Category::class, 'category_slug', 'slug');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_code', 'code');
     }
 
     public function reservations()

@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('photo_path')->nullable();
-            $table->string('category_label')->nullable();
+            $table->string('category_slug')->nullable();
             $table->integer('rooms');
             $table->integer('bathrooms');
             $table->integer('guests');
-            $table->integer('location')->nullable();
+            $table->integer('country_code')->nullable();
             $table->integer('price');
             $table->timestamps();
         });

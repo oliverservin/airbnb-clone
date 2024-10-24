@@ -2,9 +2,7 @@
 
 use function Laravel\Folio\name;
 
-name('home');
-
-?>
+name('home'); ?>
 
 <x-layouts.app>
     <x-container>
