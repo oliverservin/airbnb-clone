@@ -19,6 +19,8 @@ new class extends Component
 
     public $country = '';
 
+    public $countryCenter;
+
     public $guests = 1;
 
     public $rooms = 1;
@@ -117,11 +119,9 @@ new class extends Component
         return Country::all();
     }
 
-    public function getSelectedCenter()
+    public function updatedCountry()
     {
-        $country = Country::where('code', $this->country)->first();
-
-        return $country?->latlng;
+        $this->countryCenter = Country::where('code', $this->country)->first()?->latlng;
     }
 } ?>
 
@@ -172,11 +172,10 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Ayuda a tus invitados a encontrarte.</div>
                 </div>
 
-                <div x-data="{ selectedCenter: null }" class="flex flex-col gap-8">
+                <div class="flex flex-col gap-8">
                     <div class="relative">
                         <select
-                            wire:model="country"
-                            @change="selectedCenter = await $wire.getSelectedCenter()"
+                            wire:model.live="country"
                             class="w-full appearance-none border-2 border-neutral-300 p-3 text-lg outline-none transition focus:border-black"
                         >
                             <option value="" disabled>Selecciona un país</option>
@@ -190,7 +189,7 @@ new class extends Component
                     </div>
 
                     <x-map
-                        x-model="selectedCenter"
+                        wire:model="countryCenter"
                         @rent-modal-transition-ended.window="map.invalidateSize()"
                         wire:ignore
                     />
