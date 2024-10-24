@@ -42,7 +42,7 @@ new class extends Component
             'end_date' => $this->endDate,
         ]);
 
-        $this->dispatch('toast', message: 'Reserva completada');
+        $this->dispatch('toast', message: 'Reserva completada.');
 
         $this->redirect(route('trips'), navigate: true);
     }

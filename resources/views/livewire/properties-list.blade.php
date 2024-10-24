@@ -19,7 +19,7 @@ new class extends Component
 
         $listing->delete();
 
-        $this->dispatch('toast', message: 'Propiedad eliminada');
+        $this->dispatch('toast', message: 'Propiedad eliminada.');
 
         unset($this->properties);
     }

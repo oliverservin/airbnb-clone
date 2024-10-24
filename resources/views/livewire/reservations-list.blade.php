@@ -19,7 +19,7 @@ new class extends Component
 
         $reservation->delete();
 
-        $this->dispatch('toast', message: 'Reserva cancelada');
+        $this->dispatch('toast', message: 'Reserva cancelada.');
 
         unset($this->reservations);
     }
