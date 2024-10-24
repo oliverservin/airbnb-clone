@@ -32,4 +32,9 @@ class Country extends Model
             ];
         })->toArray();
     }
+
+    protected function sushiShouldCache()
+    {
+        return true;
+    }
 }
