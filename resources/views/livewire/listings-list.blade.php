@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Listing;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
@@ -54,6 +55,10 @@ new class extends Component
         }
 
         return $listing->get();
+    }
+
+    public function toggleFavorite(Listing $listing) {
+        Auth::user()->favorites()->toggle($listing);
     }
 
     public function mount()

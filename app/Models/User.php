@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Reservation::class, Listing::class);
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Listing::class, 'favorites', 'user_id', 'listing_id');
+    }
 }
