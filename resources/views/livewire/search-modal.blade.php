@@ -11,6 +11,8 @@ new class extends Component
 {
     public $country = '';
 
+    public $countryCenter;
+
     #[Validate(['date', 'after_or_equal:today'])]
     public $startDate;
 
@@ -49,12 +51,14 @@ new class extends Component
 
     public function mount()
     {
-        $this->country = Request::get('country');
+        $this->country = Request::get('country', '');
         $this->guests = Request::get('guests', 1);
         $this->rooms = Request::get('rooms', 1);
         $this->bathrooms = Request::get('bathrooms', 1);
         $this->startDate = Request::get('startDate');
         $this->endDate = Request::get('endDate');
+
+        $this->countryCenter = Country::where('code', $this->country)->first()?->latlng;
     }
 
     #[Computed]
@@ -72,7 +76,7 @@ new class extends Component
 } ?>
 
 <div x-data="{ showSearchModal: false }" x-on:show-search-modal.window="showSearchModal = true">
-    <x-modal x-model="showSearchModal">
+    <x-modal x-model="showSearchModal" @transitionend="$dispatch('search-modal-transition-ended')">
         <x-slot:title>
             <div class="text-lg font-semibold">Filtros</div>
         </x-slot>
@@ -83,7 +87,15 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Encuentra la ubicación perfecta.</div>
                 </div>
 
-                <div x-data="{ selectedCenter: null }" class="flex flex-col gap-8">
+                <div
+                    x-data="{
+                        selectedCenter: null,
+                        init() {
+                            this.selectedCenter  = $wire.countryCenter
+                        }
+                    }"
+                    class="flex flex-col gap-8"
+                >
                     <div class="relative">
                         <select
                             wire:model="country"
@@ -100,7 +112,11 @@ new class extends Component
                         </div>
                     </div>
 
-                    <x-map x-model="selectedCenter" wire:ignore />
+                    <x-map
+                        x-model="selectedCenter"
+                        wire:ignore
+                        @search-modal-transition-ended.window="map.invalidateSize()"
+                    />
                 </div>
 
                 @error('country')

@@ -126,7 +126,7 @@ new class extends Component
 } ?>
 
 <div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
-    <x-modal x-model="showRentModal">
+    <x-modal x-model="showRentModal" @transitionend="$dispatch('rent-modal-transition-ended')">
         <x-slot:title>
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
         </x-slot>
@@ -189,7 +189,11 @@ new class extends Component
                         </div>
                     </div>
 
-                    <x-map x-model="selectedCenter" wire:ignore />
+                    <x-map
+                        x-model="selectedCenter"
+                        @rent-modal-transition-ended.window="map.invalidateSize()"
+                        wire:ignore
+                    />
                 </div>
 
                 @error('country')
