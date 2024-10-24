@@ -43,7 +43,7 @@ new class extends Component
     public function continueToInfo()
     {
         $this->validate([
-            'country' => ['required'],
+            'country' => ['required', 'exists:App\Models\Country,code'],
         ]);
 
         $this->currentStep = 'info';

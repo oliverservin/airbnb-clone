@@ -14,6 +14,13 @@ class Country extends Model
         'latlng' => 'array',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('order', function ($query) {
+            $query->orderBy('name');
+        });
+    }
+
     public function getRows()
     {
         return collect(json_decode(File::get(base_path('countries.json'))))->map(function($country) {
@@ -23,6 +30,6 @@ class Country extends Model
                 'region' => $country->region,
                 'latlng' => json_encode($country->latlng),
             ];
-        })->sortBy('name')->toArray();
+        })->toArray();
     }
 }
