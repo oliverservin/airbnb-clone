@@ -23,6 +23,11 @@ new class extends Component
 
         unset($this->properties);
     }
+
+    public function toggleFavorite(Listing $listing)
+    {
+        Auth::user()->favorites()->toggle($listing);
+    }
 }; ?>
 
 <div>

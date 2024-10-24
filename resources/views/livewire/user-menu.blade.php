@@ -50,7 +50,7 @@ new class extends Component
                 <x-menu-item @click="$dispatch('show-register-modal'); showDropdown = false;">Registrarse</x-menu-item>
             @else
                 <x-menu-item :href="route('trips')" wire:navigate>Mis viajes</x-menu-item>
-                <x-menu-item>Mis favoritos</x-menu-item>
+                <x-menu-item :href="route('favorites')" wire:navigate>Mis favoritos</x-menu-item>
                 <x-menu-item :href="route('reservations')" wire:navigate>Mis reservas</x-menu-item>
                 <x-menu-item :href="route('properties')" wire:navigate>Mis propiedades</x-menu-item>
                 <x-menu-item @click="$dispatch('show-rent-modal')">Pon tu casa en StayStop</x-menu-item>
