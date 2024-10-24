@@ -27,7 +27,11 @@ class Country extends Model
             return [
                 'name' => $country->translations->spa->common ?? $country->name->common,
                 'code' => $country->cca2,
-                'region' => $country->region,
+                'region' => match($country->region) {
+                    'Americas' => 'América',
+                    'Europe' => 'Europa',
+                    default => $country->region,
+                },
                 'latlng' => json_encode($country->latlng),
             ];
         })->toArray();
