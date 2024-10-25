@@ -102,6 +102,7 @@
 
 ## Setup enviroment
 
+- New Laravel project
 - Install and configure Prettier
 - Install folio and volt
 - Create first folio page
