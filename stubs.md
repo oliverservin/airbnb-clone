@@ -1,3 +1,209 @@
+## Auth
+
+- `user-menu` component
+
+  ```html
+  <!-- TODO: Create alpine with `showDropdown` -->
+  <div class="relative">
+      <div class="flex flex-row items-center gap-3">
+          <!-- TODO: Add publish button -->
+
+          <!-- TODO: Toggle `showDropdown` on click -->
+          <button
+              class="flex cursor-pointer flex-row items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md lg:px-2 lg:py-1"
+          >
+              <!-- TODO: add `bars` icon with `size-4` -->
+              <div class="hidden lg:block">
+                  <!-- TODO: add `avatar` component -->
+              </div>
+          </button>
+      </div>
+      <!-- TODO: show if `showDropdown` -->
+      <!-- TODO: add `x-cloak` -->
+      <div
+          class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-56"
+      >
+          <!-- TODO: hide dropdown on click away -->
+          <div class="flex flex-col">
+              <!-- TODO: add `menu-item` component -->
+              <!-- TODO: add login button -->
+              <!-- TODO: add register button -->
+          </div>
+      </div>
+  </div>
+  ```
+- `bars` icon
+
+  ```html
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+  >
+      <path
+          fill-rule="evenodd"
+          d="M2 3.75A.75.75 0 0 1 2.75 3h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 8a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 8Zm0 4.25a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"
+          clip-rule="evenodd"
+      />
+  </svg>
+  ```
+- `avatar` icon
+  ```html
+  <img class="rounded-full" height="30" width="30" alt="Avatar" src="/images/placeholder.jpg" />
+  ```
+- `menu-item` component
+
+  ```html
+  <button class="block w-full px-4 py-3 text-left font-semibold transition hover:bg-neutral-100">
+      <!-- Label -->
+  </button>
+  ```
+- `register-modal` component
+
+  ```html
+  <!-- TODO:Create alpine component with `showRegisterModal` -->
+  <!-- TODO:Listen to `show-register-modal` to show register modal -->
+  <div>
+      <!-- TODO: add `modal` component -->
+  </div>
+  ```
+- `modal` component
+
+  ```html
+  <!-- TODO: Pass attributes -->
+  <!-- TODO: Init component with showModal -->
+  <!-- TODO: Show modal when showModal -->
+  <!-- TODO: Add cloak -->
+  <!-- TODO: Hide modal on escape -->
+  <!-- TODO: Make it modelable -->
+  <!-- TODO: Add transition with opacity only -->
+
+  <div
+      class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800/70 outline-none focus:outline-none"
+  >
+      <div class="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-3/6 xl:w-2/5">
+          <!-- TODO: add transition with alpine -->
+          <div class="translate h-full duration-300">
+              <!-- TODO: close modal on click away -->
+              <div
+                  class="translate relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none md:h-auto lg:h-auto"
+              >
+                  <div class="relative flex items-center justify-center rounded-t border-b-[1px] p-6">
+                      <!-- TODO: close modal on click -->
+                      <button class="absolute left-9 border-0 p-1 transition hover:opacity-70">
+                          <!-- TODO: add close icon "size 18px" -->
+                          Cerrar
+                      </button>
+                      <!-- TODO: add title -->
+                  </div>
+                  <div class="relative flex-auto p-6">
+                      <!-- TODO: add slot -->
+                  </div>
+                  <div class="flex flex-col gap-2 p-6">
+                      <!-- TODO: add footer -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  ```
+- `close-icon` component
+
+  ```html
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+  >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+  </svg>
+  ```
+- Register modal slots
+
+  ```html
+  <!-- TODO: Add to title slot -->
+  <div class="text-lg font-semibold">Registrarse</div>
+
+  <!-- TODO: Main slot -->
+  <form id="registerForm" wire:submit="register" class="flex flex-col gap-4">
+      <div>
+          <div class="text-2xl font-bold">Bienvenido a StaySpot</div>
+          <div class="mt-2 font-light text-neutral-500">Crear una cuenta</div>
+      </div>
+
+      <div>
+          <!-- TODO: add input component -->
+          <!-- TODO: add email input field -->
+          <!-- TODO: add `has-error` attribute on field error -->
+
+          <!-- TODO: show on field error -->
+          <p class="mt-2 text-rose-500">
+              <!-- message -->
+          </p>
+      </div>
+      <div>
+          <!-- TODO: add name field -->
+      </div>
+      <div>
+          <!-- TODO: add password field -->
+      </div>
+  </form>
+
+  <!-- TODO: add to footer slot -->
+  <div class="flex w-full flex-row items-center gap-4">
+      <!-- TODO: add continue button to submit form -->
+  </div>
+  <div class="mt-3 flex flex-col gap-4">
+      <hr />
+      <div class="mt-4 text-center font-light text-neutral-500">
+          <div>
+              ¿Ya tienes una cuenta?
+              <!-- TODO: dispatch evento to show login modal -->
+              <button class="cursor-pointer text-neutral-800 hover:underline">Iniciar sesión</button>
+          </div>
+      </div>
+  </div>
+  ```
+- `input` component
+
+  ```html
+  <!-- TODO: Add props for `label`, `disabled` and `hasError` -->
+
+  <div class="relative w-full">
+      <!-- TODO: Echo attributes -->
+      <!-- TODO: Echo disabled prop -->
+      <!-- TODO: Add 'border-rose-500 focus:border-rose-500' classes with error -->
+      <!-- TODO: Add 'border-neutral-300 focus:border-black' classes without error -->
+      <input
+          placeholder=" "
+          class="peer w-full rounded-md border-2 bg-white p-4 pl-4 pt-6 font-light outline-none transition disabled:cursor-not-allowed disabled:opacity-70"
+      />
+      <label
+          class="text-md absolute left-4 top-5 z-10 origin-[0] -translate-y-3 transform text-zinc-400 duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75"
+      >
+          <!-- TODO: echo `label` slot -->
+          <!-- Label -->
+      </label>
+  </div>
+  ```
+- `button` component
+
+  ```html
+  <!-- TODO: Add props for `disabled`, `outline` and `small` -->
+
+  <!-- TODO: add `border-black bg-white text-black` classes if outline -->
+  <!-- TODO: add `border-rose-500 bg-rose-500 text-white` classes unless outline -->
+  <!-- TODO: add `border-[1px] py-1 text-sm font-light` classes if small -->
+  <!-- TODO: add `border-2 py-3 text-base font-semibold` classes unless small -->
+  <button
+      class="relative inline-block w-full rounded-lg transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-70"
+  >
+      <!-- Label -->
+  </button>
+  ```
+
 ## Setup project
 
 - Install prettier
@@ -29,7 +235,6 @@
   }
   ```
 - App layout
-
 
   ```html
   <!DOCTYPE html>

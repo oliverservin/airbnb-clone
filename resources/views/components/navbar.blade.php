@@ -3,7 +3,7 @@
         <x-container>
             <div class="flex flex-row items-center justify-between gap-3 md:gap-0">
                 <x-logo />
-                <!-- TODO: User menu -->
+                <livewire:user-menu />
             </div>
         </x-container>
     </div>
