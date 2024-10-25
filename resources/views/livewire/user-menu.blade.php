@@ -42,9 +42,9 @@ new class extends Component
     <div
         x-cloak
         x-show="showDropdown"
-        class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-3/4"
+        class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-56"
     >
-        <div class="flexflex-col" @click.away="showDropdown = false">
+        <div class="flex flex-col" @click.away="showDropdown = false">
             @guest
                 <x-menu-item @click="$dispatch('show-login-modal'); showDropdown = false;">Iniciar sesión</x-menu-item>
                 <x-menu-item @click="$dispatch('show-register-modal'); showDropdown = false;">Registrarse</x-menu-item>
@@ -54,7 +54,7 @@ new class extends Component
                 <x-menu-item :href="route('reservations')" wire:navigate>Mis reservas</x-menu-item>
                 <x-menu-item :href="route('properties')" wire:navigate>Mis propiedades</x-menu-item>
                 <x-menu-item @click="$dispatch('show-rent-modal')">Pon tu casa en StayStop</x-menu-item>
-                <hr>
+                <hr />
                 <x-menu-item wire:click="logout">Cerrar sesión</x-menu-item>
             @endguest
         </div>
