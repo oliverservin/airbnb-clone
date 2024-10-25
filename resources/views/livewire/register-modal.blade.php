@@ -25,6 +25,8 @@ new class extends Component
 
         Auth::login($user, true);
 
+        $this->dispatch('toast', message: 'Cuenta creada.');
+
         $this->redirect(route('home'), navigate: true);
     }
 } ?>

@@ -22,6 +22,8 @@ new class extends Component
 
         Session::regenerate();
 
+        $this->dispatch('toast', message: 'Sesión iniciada.');
+
         $this->redirectIntended(default: route('home'), navigate: true);
     }
 

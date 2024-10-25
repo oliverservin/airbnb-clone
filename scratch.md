@@ -31,8 +31,6 @@
 
       Auth::login($user);
 
-      $this->dispatch('toast', message: 'Cuenta registrada.');
-
       $this->redirect(route('home'), navigate: true);
   }
   ```
@@ -70,8 +68,6 @@
 
       Session::regenerate();
 
-      $this->dispatch('toast', message: 'Sesión iniciada.');
-
       $this->redirectIntended(default: route('home'), navigate: true);
   }
 
@@ -87,6 +83,15 @@
 - Add login to user menu items
 - Update footer actions on auth modals
 - Render auth modals only as guest
+- Implement toast notifications
+  - Dispatch a toast event from `app` layout
+  - Add Notfy plugin to `app` layout
+  - Add `toast` component to `app` layout
+    - Use @persist directive
+  - Create `toast` component
+  - Dispatch `toast` on login and register
+    - login: Sesión iniciada.
+    - register: Cuenta creada.
 
 ## Setup enviroment
 
