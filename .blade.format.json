@@ -1,4 +1,3 @@
 {
-  "useLaravelPint": true,
-  "echoStyle": "inline"
+    "useLaravelPint": true
 }
