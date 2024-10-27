@@ -5,5 +5,7 @@ use function Laravel\Folio\name;
 name('home') ?>
 
 <x-layouts.app>
-    <x-container>Index</x-container>
+    @volt
+        <x-container>Index</x-container>
+    @endvolt
 </x-layouts.app>
