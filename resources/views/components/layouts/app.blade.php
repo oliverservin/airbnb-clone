@@ -9,6 +9,7 @@
     </head>
     <body class="h-full antialiased">
         <livewire:register-modal />
+        <livewire:login-modal />
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
     </body>

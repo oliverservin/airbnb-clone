@@ -5,7 +5,11 @@ use function Laravel\Folio\name;
 name('home') ?>
 
 <x-layouts.app>
-    @volt
-        <x-container>Index</x-container>
-    @endvolt
+    <x-container>
+        @auth
+            Hola {{ auth()->user()->name }}
+        @else
+            Bienvenido
+        @endauth
+    </x-container>
 </x-layouts.app>
