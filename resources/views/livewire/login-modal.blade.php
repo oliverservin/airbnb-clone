@@ -47,11 +47,21 @@ new class extends Component
             <div>
                 <x-input wire:model="email" label="Email" type="email" />
 
-                <!-- <p class="mt-2 text-rose-500">Mensaje de error</p> -->
+                @error('email')
+                    <p class="mt-2 text-rose-500">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             <div>
                 <x-input wire:model="password" label="Contraseña" type="password" />
+
+                @error('password')
+                    <p class="mt-2 text-rose-500">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
         </form>
         <x-slot name="footer">

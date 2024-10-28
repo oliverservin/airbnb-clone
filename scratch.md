@@ -63,7 +63,7 @@
       ]);
   }
   ```
-- [ ] Extranct to `authenticate` method
-- [ ] Regenerate session
-- [ ] Redirect intented and fallback to home
-- [ ] Show validation errors
+- [x] Extranct to `authenticate` method
+- [x] Regenerate session
+- [x] Redirect intented and fallback to home
+- [x] Show validation errors

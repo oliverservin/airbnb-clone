@@ -5,9 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Component;
 
-new class extends Component {
+new class extends Component
+{
     public $name;
+
     public $email;
+
     public $password;
 
     public function register()
@@ -26,7 +29,6 @@ new class extends Component {
 
         $this->redirect(route('home'), navigate: true);
     }
-
 }
 
 ?>
@@ -45,15 +47,31 @@ new class extends Component {
             <div>
                 <x-input wire:model="email" label="Email" type="email" />
 
-                <!-- <p class="mt-2 text-rose-500">Mensaje de error</p> -->
+                @error('email')
+                    <p class="mt-2 text-rose-500">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             <div>
                 <x-input wire:model="name" label="Nombre" type="text" />
+
+                @error('name')
+                    <p class="mt-2 text-rose-500">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             <div>
                 <x-input wire:model="password" label="Contraseña" type="password" />
+
+                @error('password')
+                    <p class="mt-2 text-rose-500">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
         </form>
         <x-slot name="footer">
