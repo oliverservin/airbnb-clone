@@ -17,5 +17,5 @@
 - [x] Add `x-modelable="showModal"`
 - [x] Add `transition.opacity` to root modal component
 - [x] Add `x-show` and `x-transition` on top of modal wrapper
-- [ ] Fill placeholders `title` `footer` `slot`
-- [ ] Add example slots to register modal
+- [x] Fill placeholders `title` `footer` `slot`
+- [x] Add example slots to register modal
