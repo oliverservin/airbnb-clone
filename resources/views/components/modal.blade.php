@@ -18,10 +18,10 @@
                     <button @click="showModal = false" class="absolute left-9 border-0 p-1 transition hover:opacity-70">
                         <x-icon.close class="size-[18px]" />
                     </button>
-                    Título
+                    {{ $title ?? '' }}
                 </div>
-                <div class="relative flex-auto p-6">Contenido</div>
-                <div class="flex flex-col gap-2 p-6">Footer</div>
+                <div class="relative flex-auto p-6">{{ $slot }}</div>
+                <div class="flex flex-col gap-2 p-6">{{ $footer ?? '' }}</div>
             </div>
         </div>
     </div>
