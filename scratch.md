@@ -14,7 +14,7 @@
   ]);
   ```
 - [x] Hash password
-- [ ] Create user
+- [x] Create user
 - [ ] Login user
 - [ ] Redirect to home
   - with navigate

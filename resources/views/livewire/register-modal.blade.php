@@ -18,6 +18,8 @@ new class extends Component {
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
+
+        User::create($validated);
     }
 
 }
