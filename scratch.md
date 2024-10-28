@@ -3,7 +3,7 @@
 - [x] Convert `register-modal` to livewire
 - [x] Add `name` `email` `password` properties
 - [x] Add `register` action
-- [ ] Add validation
+- [x] Add validation
 
   ```php
   <?php

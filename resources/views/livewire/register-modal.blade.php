@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -9,7 +10,11 @@ new class extends Component {
 
     public function register()
     {
-
+        $this->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email', 'lowercase', 'unique:'.User::class],
+            'password' => ['required'],
+        ]);
     }
 
 }
