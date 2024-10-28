@@ -5,9 +5,10 @@
     class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800/70 outline-none focus:outline-none"
     @keydown.escape.window="showModal = false"
     x-modelable="showModal"
+    x-transition.opacity
 >
     <div class="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-3/6 xl:w-2/5">
-        <div class="translate h-full duration-300">
+        <div x-show="showModal" x-transition class="translate h-full duration-300">
             <!-- Modal wrapper -->
             <div
                 @click.away="showModal = false"
