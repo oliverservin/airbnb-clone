@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
@@ -14,6 +17,17 @@ new class extends Component
     public function login()
     {
         $this->validate();
+
+        if (!Auth::attempt($this->only(['email', 'password'])))
+        {
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
+
+        Session::regenerate();
+
+        $this->redirectIntended(default: route('home'), navigate: true);
     }
 }
 
