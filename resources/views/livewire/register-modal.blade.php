@@ -1,3 +1,21 @@
+<?php
+
+use Livewire\Volt\Component;
+
+new class extends Component {
+    public $name;
+    public $email;
+    public $password;
+
+    public function register()
+    {
+
+    }
+
+}
+
+?>
+
 <div x-data="{ showRegisterModal: false }" x-on:show-register-modal.window="showRegisterModal = true">
     <x-modal x-model="showRegisterModal">
         <x-slot name="title">
