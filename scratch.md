@@ -8,7 +8,7 @@
 - [x] Close modal no "Escape"
   - Root component
 - [x] Close modal on click away from modal wrapper
-- [ ] Dispatch `show-register-modal`
+- [x] Dispatch `show-register-modal`
 - [ ] Create alpine component on app layout to listing `show-register-modal`
 - [ ] Add x-data with `showRegisterModal: false`
 - [ ] Test show register modal with `x-text`

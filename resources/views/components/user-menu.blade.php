@@ -14,7 +14,7 @@
         class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-48"
     >
         <div @click.away="showDropdown = false" class="flex flex-col">
-            <x-menu-item>Registrarse</x-menu-item>
+            <x-menu-item @click="$dispatch('show-register-modal')">Registrarse</x-menu-item>
             <x-menu-item>Iniciar sesión</x-menu-item>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <div
-    x-data="{ showModal: true }"
+    x-data="{ showModal: false }"
     x-show="showModal"
     class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800/70 outline-none focus:outline-none"
     @keydown.escape.window="showModal = false"
