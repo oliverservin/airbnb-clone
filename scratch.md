@@ -1,5 +1,5 @@
-- [ ] Add `wire:model` to inputs
-- [ ] Add `wire:submit="register"` to register modal
+- [x] Add `wire:model` to inputs
+- [x] Add `wire:submit="register"` to register modal
 - [ ] Convert `register-modal` to livewire
 - [ ] Add `name` `email` `password` properties
 - [ ] Add `register` action
