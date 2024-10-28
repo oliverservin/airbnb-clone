@@ -1,8 +1,8 @@
 - [x] Add modal component to app layout
 - [x] Create modal component
-- [ ] Add markup from stubs
-- [ ] Show modal on `showModal`
-- [ ] Add x-data with `showModal: false`
+- [x] Add markup from stubs
+- [x] Show modal on `showModal`
+- [x] Add x-data with `showModal: false`
 - [ ] Close modal on click "close"
   - Set temporary `showModal` to true
 - [ ] Close modal no "Escape"
