@@ -1,3 +1,15 @@
+<?php
+
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    public $email;
+    public $password;
+}
+
+?>
+
 <div x-data="{ showLoginModal: false }" x-on:show-login-modal.window="showLoginModal = true">
     <x-modal x-model="showLoginModal">
         <x-slot name="title">
