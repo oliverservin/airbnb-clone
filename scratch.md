@@ -1,5 +1,5 @@
 - [x] Add modal component to app layout
-- [ ] Create modal component
+- [x] Create modal component
 - [ ] Add markup from stubs
 - [ ] Show modal on `showModal`
 - [ ] Add x-data with `showModal: false`
