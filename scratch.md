@@ -39,9 +39,9 @@
 - [x] Add `wire:submit="login"` on login modal
 - [x] Convert `login-modal` to livewire
 - [x] Add `email` `password` properties
-- [ ] Add `login` action
-- [ ] Validate input
-- [ ] Add validation rules
+- [x] Add `login` action
+- [x] Validate input
+- [x] Add validation rules
 
   ```php
   <?php

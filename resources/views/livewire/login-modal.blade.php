@@ -1,11 +1,20 @@
 <?php
 
+use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
+    #[Validate(['required'])]
     public $email;
+
+    #[Validate(['required'])]
     public $password;
+
+    public function login()
+    {
+        $this->validate();
+    }
 }
 
 ?>
