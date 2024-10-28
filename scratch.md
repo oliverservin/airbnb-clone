@@ -16,15 +16,15 @@
 - [x] Hash password
 - [x] Create user
 - [x] Login user
-- [ ] Redirect to home
+- [x] Redirect to home
   - with navigate
-- [ ] Update welcome message on index page
+- [x] Update welcome message on index page
   - show user name
-- [ ] Add logout user item
+- [x] Add logout user item
   - use @auth directive
-- [ ] Add `logout` action on click logout
-- [ ] Convert to livewire component `user-menu`
-- [ ] Add `logout` action
+- [x] Add `logout` action on click logout
+- [x] Convert to livewire component `user-menu`
+- [x] Add `logout` action
 
   ```php
   <?php
@@ -34,7 +34,7 @@
   Session::invalidate();
   Session::regenerateToken();
   ```
-- [ ] Redirect to home
+- [x] Redirect to home
 - [ ] Add `wire:model` to login inputs
 - [ ] Add `wire:submit="login"` on login modal
 - [ ] Convert `login-modal` to livewire

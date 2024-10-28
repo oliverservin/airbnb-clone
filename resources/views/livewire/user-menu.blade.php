@@ -1,3 +1,24 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    public function logout()
+    {
+        Auth::guard('web')->logout();
+
+        Session::invalidate();
+        Session::regenerateToken();
+
+        $this->redirect(route('home'), navigate: true);
+    }
+}
+
+?>
+
 <div x-data="{ showDropdown: false }" class="relative">
     <div class="flex flex-row items-center gap-3">
         <button
@@ -15,10 +36,10 @@
     >
         <div @click.away="showDropdown = false" class="flex flex-col">
             @auth
-                <x-menu-item>Cerrar sesión</x-menu-item>
+            <x-menu-item wire:click="logout">Cerrar sesión</x-menu-item>
             @else
-                <x-menu-item @click="$dispatch('show-register-modal')">Registrarse</x-menu-item>
-                <x-menu-item @click="$dispatch('show-login-modal')">Iniciar sesión</x-menu-item>
+            <x-menu-item @click="$dispatch('show-register-modal')">Registrarse</x-menu-item>
+            <x-menu-item @click="$dispatch('show-login-modal')">Iniciar sesión</x-menu-item>
             @endauth
         </div>
     </div>

@@ -6,6 +6,12 @@ name('home') ?>
 
 <x-layouts.app>
     @volt
-        <x-container>Bienvenido</x-container>
+        <x-container>
+            @auth
+                Hola {{ auth()->user()-> name }}
+            @else
+                Bienvenido
+            @endauth
+        </x-container>
     @endvolt
 </x-layouts.app>
