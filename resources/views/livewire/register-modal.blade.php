@@ -43,7 +43,7 @@ new class extends Component
             </div>
 
             <div>
-                <x-input wire:model="email" label="Email" type="email" :has-error="$errors->has('email')" />
+                <x-input wire:model="email" label="Email" type="email" />
 
                 @error('email')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
@@ -51,7 +51,7 @@ new class extends Component
             </div>
 
             <div>
-                <x-input wire:model="name" label="Nombre" type="text" :has-error="$errors->has('name')" />
+                <x-input wire:model="name" label="Nombre" type="text" />
 
                 @error('email')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
@@ -59,12 +59,7 @@ new class extends Component
             </div>
 
             <div>
-                <x-input
-                    wire:model="password"
-                    label="Contraseña"
-                    type="password"
-                    :has-error="$errors->has('password')"
-                />
+                <x-input wire:model="password" label="Contraseña" type="password" />
 
                 @error('password')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
