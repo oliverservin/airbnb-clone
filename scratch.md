@@ -13,8 +13,8 @@
 - [x] Add x-data with `showRegisterModal: false`
 - [x] Test show register modal with `x-text`
 - [x] Add `x-model="showRegisterModal"` to model
-- [ ] Pass `$attributes`
-- [ ] Add `x-modelable="showModal"`
+- [x] Pass `$attributes`
+- [x] Add `x-modelable="showModal"`
 - [ ] Add `transition.opacity` to root modal component
 - [ ] Add `x-show` and `x-transition` on top of modal wrapper
 - [ ] Fill placeholders `title` `footer` `slot`
