@@ -13,7 +13,7 @@
       'password' => ['required'],
   ]);
   ```
-- [ ] Hash password
+- [x] Hash password
 - [ ] Create user
 - [ ] Login user
 - [ ] Redirect to home

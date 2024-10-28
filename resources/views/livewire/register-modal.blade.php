@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -10,11 +11,13 @@ new class extends Component {
 
     public function register()
     {
-        $this->validate([
+        $validated = $this->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'lowercase', 'unique:'.User::class],
             'password' => ['required'],
         ]);
+
+        $validated['password'] = Hash::make($validated['password']);
     }
 
 }
