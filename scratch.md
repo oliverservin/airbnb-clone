@@ -3,7 +3,7 @@
 - [x] Add markup from stubs
 - [x] Show modal on `showModal`
 - [x] Add x-data with `showModal: false`
-- [ ] Close modal on click "close"
+- [x] Close modal on click "close"
   - Set temporary `showModal` to true
 - [ ] Close modal no "Escape"
   - Root component
