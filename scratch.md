@@ -35,9 +35,9 @@
   Session::regenerateToken();
   ```
 - [x] Redirect to home
-- [ ] Add `wire:model` to login inputs
-- [ ] Add `wire:submit="login"` on login modal
-- [ ] Convert `login-modal` to livewire
+- [x] Add `wire:model` to login inputs
+- [x] Add `wire:submit="login"` on login modal
+- [x] Convert `login-modal` to livewire
 - [ ] Add `email` `password` properties
 - [ ] Add `login` action
 - [ ] Validate input

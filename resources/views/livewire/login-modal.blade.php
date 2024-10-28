@@ -3,20 +3,20 @@
         <x-slot name="title">
             <div class="text-lg font-semibold">Iniciar sesión</div>
         </x-slot>
-        <form id="loginForm" class="flex flex-col gap-4">
+        <form wire:submit="login" id="loginForm" class="flex flex-col gap-4">
             <div>
                 <div class="text-2xl font-bold">Bienvenido</div>
                 <div class="mt-2 font-light text-neutral-500">Acceder a tu cuenta</div>
             </div>
 
             <div>
-                <x-input label="Email" type="email" />
+                <x-input wire:model="email" label="Email" type="email" />
 
                 <!-- <p class="mt-2 text-rose-500">Mensaje de error</p> -->
             </div>
 
             <div>
-                <x-input label="Contraseña" type="password" />
+                <x-input wire:model="password" label="Contraseña" type="password" />
             </div>
         </form>
         <x-slot name="footer">
