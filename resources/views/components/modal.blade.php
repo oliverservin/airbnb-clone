@@ -8,6 +8,7 @@
         <div class="translate h-full duration-300">
             <!-- Modal wrapper -->
             <div
+                @click.away="showModal = false"
                 class="translate relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none md:h-auto lg:h-auto"
             >
                 <div class="relative flex items-center justify-center rounded-t border-b-[1px] p-6">

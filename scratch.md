@@ -5,9 +5,9 @@
 - [x] Add x-data with `showModal: false`
 - [x] Close modal on click "close"
   - Set temporary `showModal` to true
-- [ ] Close modal no "Escape"
+- [x] Close modal no "Escape"
   - Root component
-- [ ] Close modal on click away from modal wrapper
+- [x] Close modal on click away from modal wrapper
 - [ ] Dispatch `show-register-modal`
 - [ ] Create alpine component on app layout to listing `show-register-modal`
 - [ ] Add x-data with `showRegisterModal: false`
