@@ -9,10 +9,10 @@
   - Root component
 - [x] Close modal on click away from modal wrapper
 - [x] Dispatch `show-register-modal`
-- [ ] Create alpine component on app layout to listing `show-register-modal`
-- [ ] Add x-data with `showRegisterModal: false`
-- [ ] Test show register modal with `x-text`
-- [ ] Add `x-model="showRegisterModal"` to model
+- [x] Create alpine component on app layout to listing `show-register-modal`
+- [x] Add x-data with `showRegisterModal: false`
+- [x] Test show register modal with `x-text`
+- [x] Add `x-model="showRegisterModal"` to model
 - [ ] Pass `$attributes`
 - [ ] Add `x-modelable="showModal"`
 - [ ] Add `transition.opacity` to root modal component

@@ -8,8 +8,9 @@
         @vite('resources/css/app.css')
     </head>
     <body class="h-full antialiased">
-        <div x-data="{ showRegisterModal: false }" x-on:show-register-modal="showRegisterModal = true">
-            <x-modal />
+        <div x-data="{ showRegisterModal: false }" x-on:show-register-modal.window="showRegisterModal = true">
+            <x-modal x-model="showRegisterModal" />
+            <div x-text="showRegisterModal"></div>
         </div>
         <x-navbar />
         <div class="pb-20 pt-28">{{ $slot }}</div>
