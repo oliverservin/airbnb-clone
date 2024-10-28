@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Component;
 
@@ -19,7 +20,11 @@ new class extends Component {
 
         $validated['password'] = Hash::make($validated['password']);
 
-        User::create($validated);
+        $user = User::create($validated);
+
+        Auth::login($user);
+
+        $this->redirect(route('home'), navigate: true);
     }
 
 }

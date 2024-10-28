@@ -15,7 +15,7 @@
   ```
 - [x] Hash password
 - [x] Create user
-- [ ] Login user
+- [x] Login user
 - [ ] Redirect to home
   - with navigate
 - [ ] Update welcome message on index page
