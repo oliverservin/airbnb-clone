@@ -4,6 +4,7 @@
     <input
         placeholder=" "
         {{ $disabled ? 'disabled' : '' }}
+        {{ $attributes }}
         class="peer w-full rounded-md border-2 border-neutral-300 bg-white p-4 pl-4 pt-6 font-light outline-none transition focus:border-black disabled:cursor-not-allowed disabled:opacity-70"
     />
     <label
