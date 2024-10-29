@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
@@ -28,7 +29,7 @@ new class extends Component
     {
         $this->validate();
 
-        Auth::user()->listings()->create([
+        $listing = Auth::user()->listings()->create([
             'guests' => $this->guests,
             'rooms' => $this->rooms,
             'bathrooms' => $this->bathrooms,
@@ -37,9 +38,7 @@ new class extends Component
             'price' => $this->price,
         ]);
     }
-}
-
-?>
+} ?>
 
 <div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
@@ -115,9 +114,9 @@ new class extends Component
             </div>
 
             <div>
-                <x-price-input label="Precio" />
+                <x-price-input wire:model="price" label="Precio" />
 
-                @error('title')
+                @error('price')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </div>
