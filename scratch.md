@@ -1,4 +1,4 @@
-- [ ] Add has-error attribute
+- [x] Add has-error attribute
   - Pass bolean if input has error with `$errors->has('something')`
 - [ ] Add `hasError` property to `input` component
   - Test property

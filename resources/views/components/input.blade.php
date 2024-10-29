@@ -1,4 +1,4 @@
-@props(['label', 'disabled' => false])
+@props(['label', 'disabled' => false, 'hasError' => false])
 
 <div class="relative w-full">
     <input
