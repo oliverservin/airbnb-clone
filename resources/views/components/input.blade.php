@@ -12,4 +12,6 @@
     >
         {{ $label }}
     </label>
+
+    {{ $hasError ? 'error' : '' }}
 </div>
