@@ -29,6 +29,14 @@ new class extends Component
 
         $this->redirect(route('home'), navigate: true);
     }
+
+    public function validationAttributes()
+    {
+        return [
+            'name' => 'nombre',
+            'password' => 'contraseña',
+        ];
+    }
 } ?>
 
 <div x-data="{ showRegisterModal: false }" x-on:show-register-modal.window="showRegisterModal = true">
@@ -53,7 +61,7 @@ new class extends Component
             <div>
                 <x-input wire:model="name" label="Nombre" type="text" />
 
-                @error('email')
+                @error('name')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </div>
