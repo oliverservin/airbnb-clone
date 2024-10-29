@@ -22,6 +22,16 @@ new class extends Component
 <div x-data="{ showDropdown: false }" class="relative">
     <div class="flex flex-row items-center gap-3">
         <button
+            @auth
+                @click="$dispatch('show-rent-modal')"
+            @else
+                @click="$dispatch('show-login-modal')"
+            @endif
+            class="hidden rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 lg:block"
+        >
+            Pon tu casa en StayStop
+        </button>
+        <button
             @click="showDropdown = !showDropdown"
             class="flex flex-row items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md lg:px-2 lg:py-1"
         >
