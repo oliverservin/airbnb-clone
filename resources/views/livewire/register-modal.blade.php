@@ -51,7 +51,7 @@ new class extends Component
             </div>
 
             <div>
-                <x-input wire:model="email" label="Email" type="email" />
+                <x-input wire:model="email" label="Email" type="email" :has-error="$errors->has('email')" />
 
                 @error('email')
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
