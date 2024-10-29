@@ -1,12 +1,41 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public function publish()
+    #[Validate(['required', 'integer', 'min:1'])]
+    public $guests = 1;
+
+    #[Validate(['required', 'integer', 'min:1'])]
+    public $rooms = 1;
+
+    #[Validate(['required', 'integer', 'min:1'])]
+    public $bathrooms = 1;
+
+    #[Validate(['required'])]
+    public $title;
+
+    #[Validate(['required'])]
+    public $description;
+
+    #[Validate(['required', 'integer', 'min:1'])]
+    public $price;
+
+    public function save()
     {
-        //
+        $this->validate();
+
+        Auth::user()->listings()->create([
+            'guests' => $this->guests,
+            'rooms' => $this->rooms,
+            'bathrooms' => $this->bathrooms,
+            'title' => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+        ]);
     }
 }
 
@@ -29,13 +58,21 @@ new class extends Component
                     <div class="font-medium">Huespedes</div>
                     <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
                 </div>
+
+                @error('guests')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </x-counter>
 
-            <x-counter wire:model="room">
+            <x-counter wire:model="rooms">
                 <div>
                     <div class="font-medium">Habitaciones</div>
                     <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
                 </div>
+
+                @error('rooms')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </x-counter>
 
             <x-counter wire:model="bathrooms">
@@ -43,6 +80,10 @@ new class extends Component
                     <div class="font-medium">Baños</div>
                     <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
                 </div>
+
+                @error('bathrooms')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </x-counter>
 
             <div>
@@ -52,12 +93,20 @@ new class extends Component
 
             <div>
                 <x-input wire:model="title" label="Título" />
+
+                @error('title')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <hr />
 
             <div>
                 <x-input wire:model="description" label="Descripción" />
+
+                @error('description')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -67,6 +116,10 @@ new class extends Component
 
             <div>
                 <x-price-input label="Precio" />
+
+                @error('title')
+                    <p class="mt-2 text-rose-500">{{ $message }}</p>
+                @enderror
             </div>
         </form>
 
