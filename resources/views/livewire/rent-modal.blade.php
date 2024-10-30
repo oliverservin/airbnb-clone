@@ -16,7 +16,7 @@ new class extends Component {} ?>
                 <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
             </div>
 
-            <x-counter wire:model="guest">
+            <x-counter>
                 <div>
                     <div class="font-medium">Huespedes</div>
                     <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
@@ -27,7 +27,7 @@ new class extends Component {} ?>
                 @enderror
             </x-counter>
 
-            <x-counter wire:model="rooms">
+            <x-counter>
                 <div>
                     <div class="font-medium">Habitaciones</div>
                     <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
@@ -38,7 +38,7 @@ new class extends Component {} ?>
                 @enderror
             </x-counter>
 
-            <x-counter wire:model="bathrooms">
+            <x-counter wir>
                 <div>
                     <div class="font-medium">Baños</div>
                     <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
