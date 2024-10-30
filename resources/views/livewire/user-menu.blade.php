@@ -46,6 +46,8 @@ new class extends Component
     >
         <div @click.away="showDropdown = false" class="flex flex-col">
             @auth
+                <x-menu-item @click="$dispatch('show-rent-modal')">Pon tu casa en StayStop</x-menu-item>
+                <hr />
                 <x-menu-item wire:click="logout">Cerrar sesión</x-menu-item>
             @else
                 <x-menu-item @click="$dispatch('show-register-modal')">Registrarse</x-menu-item>
