@@ -147,7 +147,7 @@ new class extends Component
                 <div x-data="{ photoPreview: null }">
                     <button
                         type="button"
-                        class="relative flex w-full cursor-pointer flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
+                        class="relative flex w-full flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
                     >
                         <x-icon.photo class="size-[50px]" />
                         <div class="text-lg font-semibold">Click to upload</div>
