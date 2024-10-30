@@ -1,21 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
-new class extends Component
-{
-    #[Validate(['required', 'integer', 'min:1'])]
-    public $guests = 1;
-
-    #[Validate(['required', 'integer', 'min:1'])]
-    public $rooms = 1;
-
-    #[Validate(['required', 'integer', 'min:1'])]
-    public $bathrooms = 1;
-} ?>
+new class extends Component {} ?>
 
 <div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
