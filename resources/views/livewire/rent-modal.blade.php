@@ -34,6 +34,13 @@ new class extends Component
             'bathrooms' => ['required', 'integer', 'min:1'],
         ]);
 
+        $this->currentStep = 'photo';
+    }
+
+    public function validatePhoto()
+    {
+        // TODO: add validation
+
         $this->currentStep = 'description';
     }
 
@@ -130,6 +137,36 @@ new class extends Component
             </x-slot>
         @endif
 
+        @if ($currentStep === 'photo')
+            <form id="photoForm" wire:submit="validatePhoto" class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">Añade una foto de tu casa</div>
+                    <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
+                </div>
+
+                <div x-data="{ photoPreview: null }">
+                    <button
+                        type="button"
+                        class="relative flex w-full cursor-pointer flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
+                    >
+                        <x-icon.photo class="size-[50px]" />
+                        <div class="text-lg font-semibold">Click to upload</div>
+                        <!-- Photo preview -->
+                        <!-- <div class="absolute inset-0 h-full w-full overflow-hidden">
+                            <img class="object-cover" alt="House" />
+                        </div> -->
+                    </button>
+                </div>
+            </form>
+
+            <x-slot name="footer">
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="button" @click="$wire.set('currentStep', 'info')" outline>Regresar</x-button>
+                    <x-button type="submit" form="photoForm">Continuar</x-button>
+                </div>
+            </x-slot>
+        @endif
+
         @if ($currentStep === 'description')
             <form id="descriptionForm" wire:submit="validateDescription" class="flex flex-col gap-8">
                 <div>
@@ -158,7 +195,7 @@ new class extends Component
 
             <x-slot name="footer">
                 <div class="flex w-full flex-row items-center gap-4">
-                    <x-button outline @click="$wire.set('currentStep', 'info')">Regresar</x-button>
+                    <x-button outline @click="$wire.set('currentStep', 'photo')">Regresar</x-button>
                     <x-button type="submit" form="descriptionForm">Publicar</x-button>
                 </div>
             </x-slot>
