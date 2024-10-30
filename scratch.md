@@ -1,0 +1,11 @@
+- [ ] Add `count++` on click plus button
+- [ ] Add `x-text="count"` to counter
+- [ ] Init `x-data` to root component
+- [ ] Add `count: 1` to `x-data`
+- [ ] Add `count > 1 && count--` on click minus button
+- [ ] Add `guests`, `rooms`, `bathrooms` properties
+  - Also set default value `1`
+- [ ] Add `wire:model` to fields
+- [ ] Add default value `2` for guest
+  - Check it doesnt work
+- [ ] Add `x-modelable="count"` to `counter` component
