@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
@@ -46,13 +45,13 @@ new class extends Component
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
         </x-slot>
 
-        <form id="saveProperty" wire:submit="save" class="flex flex-col gap-8">
+        <form id="propertyForm" wire:submit="save" class="flex flex-col gap-8">
             <div>
                 <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
                 <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
             </div>
 
-            <x-counter wire:model="guest">
+            <x-counter wire:model="guests">
                 <div>
                     <div class="font-medium">Huespedes</div>
                     <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
@@ -107,7 +106,6 @@ new class extends Component
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </div>
-
             <div>
                 <div class="text-2xl font-bold">Ahora, establece tu precio</div>
                 <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
@@ -123,7 +121,9 @@ new class extends Component
         </form>
 
         <x-slot name="footer">
-            <x-button form="saveProperty" type="submit">Publicar</x-button>
+            <div class="flex w-full flex-row items-center gap-4">
+                <x-button type="submit" form="propertyForm">Publicar</x-button>
+            </div>
         </x-slot>
     </x-modal>
 </div>
