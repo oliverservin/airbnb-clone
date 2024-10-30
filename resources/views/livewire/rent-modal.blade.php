@@ -21,10 +21,6 @@ new class extends Component {} ?>
                     <div class="font-medium">Huespedes</div>
                     <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
                 </div>
-
-                @error('guests')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
             </x-counter>
 
             <x-counter>
@@ -32,21 +28,13 @@ new class extends Component {} ?>
                     <div class="font-medium">Habitaciones</div>
                     <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
                 </div>
-
-                @error('rooms')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
             </x-counter>
 
-            <x-counter wir>
+            <x-counter>
                 <div>
                     <div class="font-medium">Baños</div>
                     <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
                 </div>
-
-                @error('bathrooms')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
             </x-counter>
         </form>
 
