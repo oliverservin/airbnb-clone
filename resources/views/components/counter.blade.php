@@ -3,6 +3,7 @@
     <div class="flex flex-row items-center gap-4">
         <button
             type="button"
+            @click="count > 1 && count--"
             class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[1px] border-neutral-400 text-neutral-600 transition hover:opacity-80"
         >
             <x-icon.minus class="size-4" />

@@ -2,7 +2,7 @@
 - [x] Add `x-text="count"` to counter
 - [x] Init `x-data` to root component
 - [x] Add `count: 1` to `x-data`
-- [ ] Add `count > 1 && count--` on click minus button
+- [x] Add `count > 1 && count--` on click minus button
 - [ ] Add `guests`, `rooms`, `bathrooms` properties
   - Also set default value `1`
 - [ ] Add `wire:model` to fields
