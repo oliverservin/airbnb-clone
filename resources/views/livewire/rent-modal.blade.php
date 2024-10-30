@@ -37,6 +37,18 @@ new class extends Component
             'price' => $this->price,
         ]);
     }
+
+    public function validationAttributes()
+    {
+        return [
+            'guests' => 'huéspedes',
+            'rooms' => 'habitaciones',
+            'bathrooms' => 'baños',
+            'title' => 'título',
+            'description' => 'descripción',
+            'price' => 'precio',
+        ];
+    }
 } ?>
 
 <div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
