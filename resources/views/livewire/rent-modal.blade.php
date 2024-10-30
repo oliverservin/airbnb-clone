@@ -15,29 +15,6 @@ new class extends Component
 
     #[Validate(['required', 'integer', 'min:1'])]
     public $bathrooms = 1;
-
-    #[Validate(['required'])]
-    public $title;
-
-    #[Validate(['required'])]
-    public $description;
-
-    #[Validate(['required', 'integer', 'min:1'])]
-    public $price;
-
-    public function save()
-    {
-        $this->validate();
-
-        $listing = Auth::user()->listings()->create([
-            'guests' => $this->guests,
-            'rooms' => $this->rooms,
-            'bathrooms' => $this->bathrooms,
-            'title' => $this->title,
-            'description' => $this->description,
-            'price' => $this->price,
-        ]);
-    }
 } ?>
 
 <div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
@@ -84,42 +61,6 @@ new class extends Component
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </x-counter>
-
-            <div>
-                <div class="text-2xl font-bold">¿Cómo describirías tu lugar?</div>
-                <div class="mt-2 font-light text-neutral-500">Lo mejor es que sea breve y concisa.</div>
-            </div>
-
-            <div>
-                <x-input wire:model="title" label="Título" />
-
-                @error('title')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <hr />
-
-            <div>
-                <x-input wire:model="description" label="Descripción" />
-
-                @error('description')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <div class="text-2xl font-bold">Ahora, establece tu precio</div>
-                <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
-            </div>
-
-            <div>
-                <x-price-input wire:model="price" label="Precio" />
-
-                @error('price')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </div>
         </form>
 
         <x-slot name="footer">
