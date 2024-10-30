@@ -1,6 +1,6 @@
-- [ ] Add `count++` on click plus button
-- [ ] Add `x-text="count"` to counter
-- [ ] Init `x-data` to root component
+- [x] Add `count++` on click plus button
+- [x] Add `x-text="count"` to counter
+- [x] Init `x-data` to root component
 - [ ] Add `count: 1` to `x-data`
 - [ ] Add `count > 1 && count--` on click minus button
 - [ ] Add `guests`, `rooms`, `bathrooms` properties
