@@ -2,7 +2,14 @@
 
 use Livewire\Volt\Component;
 
-new class extends Component {} ?>
+new class extends Component
+{
+    public $guests = 1;
+
+    public $rooms = 1;
+
+    public $bathrooms = 1;
+} ?>
 
 <div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">

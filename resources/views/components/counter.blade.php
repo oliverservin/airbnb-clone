@@ -1,4 +1,9 @@
-<div x-data="{ count: 1 }" {{ $attributes }} class="flex flex-row items-center justify-between">
+<div
+    x-data="{ count: 1 }"
+    x-modelable="count"
+    {{ $attributes }}
+    class="flex flex-row items-center justify-between"
+>
     {{ $slot }}
     <div class="flex flex-row items-center gap-4">
         <button
@@ -8,9 +13,7 @@
         >
             <x-icon.minus class="size-4" />
         </button>
-        <div x-text="count" class="text-xl font-light tabular-nums text-neutral-600">
-
-        </div>
+        <div x-text="count" class="text-xl font-light tabular-nums text-neutral-600"></div>
         <button
             type="button"
             @click="count++"

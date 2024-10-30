@@ -3,7 +3,7 @@
 - [x] Init `x-data` to root component
 - [x] Add `count: 1` to `x-data`
 - [x] Add `count > 1 && count--` on click minus button
-- [ ] Add `guests`, `rooms`, `bathrooms` properties
+- [x] Add `guests`, `rooms`, `bathrooms` properties
   - Also set default value `1`
 - [x] Add `wire:model` to fields
 - [ ] Add default value `2` for guest
