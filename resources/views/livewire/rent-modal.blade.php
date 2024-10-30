@@ -150,7 +150,7 @@ new class extends Component
                         class="relative flex w-full flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
                     >
                         <x-icon.photo class="size-[50px]" />
-                        <div class="text-lg font-semibold">Click to upload</div>
+                        <div class="text-lg font-semibold">Haz clic para subir foto</div>
                         <!-- Photo preview -->
                         <!-- <div class="absolute inset-0 h-full w-full overflow-hidden">
                             <img class="object-cover" alt="House" />
