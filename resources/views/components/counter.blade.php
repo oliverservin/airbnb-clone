@@ -1,4 +1,4 @@
-<div x-data="" {{ $attributes }} class="flex flex-row items-center justify-between">
+<div x-data="{ count: 1 }" {{ $attributes }} class="flex flex-row items-center justify-between">
     {{ $slot }}
     <div class="flex flex-row items-center gap-4">
         <button
