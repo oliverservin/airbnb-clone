@@ -76,7 +76,7 @@ new class extends Component
     }
 } ?>
 
-<div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
+<div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
         <x-slot name="title">
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
