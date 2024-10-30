@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->integer('price');
+            $table->string('photo_path')->nullable();
             $table->timestamps();
         });
     }
