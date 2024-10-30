@@ -16,21 +16,21 @@ new class extends Component {} ?>
                 <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
             </div>
 
-            <x-counter>
+            <x-counter wire:model="guests">
                 <div>
                     <div class="font-medium">Huespedes</div>
                     <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
                 </div>
             </x-counter>
 
-            <x-counter>
+            <x-counter wire:model="rooms">
                 <div>
                     <div class="font-medium">Habitaciones</div>
                     <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
                 </div>
             </x-counter>
 
-            <x-counter>
+            <x-counter wire:model="bathrooms">
                 <div>
                     <div class="font-medium">Baños</div>
                     <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>

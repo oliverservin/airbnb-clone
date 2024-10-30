@@ -5,7 +5,7 @@
 - [x] Add `count > 1 && count--` on click minus button
 - [ ] Add `guests`, `rooms`, `bathrooms` properties
   - Also set default value `1`
-- [ ] Add `wire:model` to fields
+- [x] Add `wire:model` to fields
 - [ ] Add default value `2` for guest
   - Check it doesnt work
 - [ ] Add `x-modelable="count"` to `counter` component
