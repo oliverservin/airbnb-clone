@@ -42,10 +42,11 @@ new class extends Component
     <div
         x-cloak
         x-show="showDropdown"
-        class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-48"
+        class="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-52"
     >
         <div @click.away="showDropdown = false" class="flex flex-col">
             @auth
+                <x-menu-item :href="route('properties')" wire:navigate>Mis propiedades</x-menu-item>
                 <x-menu-item @click="$dispatch('show-rent-modal')">Pon tu casa en StayStop</x-menu-item>
                 <hr />
                 <x-menu-item wire:click="logout">Cerrar sesión</x-menu-item>
