@@ -5,8 +5,8 @@
 -   [x] Uncomment photo preview
 -   [x] Add `:src="photoPreview"` to img preview
 -   [x] Init `{ photoPreview: null }` property
--   [ ] Add `@change` to file input
--   [ ] Create file reader: `const reader = new FileReader()`
+-   [x] Add `@change` to file input
+-   [x] Create file reader: `const reader = new FileReader()`
 -   [ ] Assign photo to `photoPreview`:
 
     ```js
