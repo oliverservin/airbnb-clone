@@ -145,9 +145,17 @@ new class extends Component
                 </div>
 
                 <div x-data="{ photoPreview: null }">
-                    <input @change="
+                    <input
+                        @change="
                         const reader = new FileReader()
-                        " class="hidden" x-ref="photo" type="file" />
+                        reader.onload = (e) => {
+                            photoPreview = e.target.result
+                        }
+                        "
+                        class="hidden"
+                        x-ref="photo"
+                        type="file"
+                    />
                     <button
                         @click="$refs.photo.click()"
                         type="button"

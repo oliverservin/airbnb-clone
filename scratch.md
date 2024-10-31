@@ -7,7 +7,7 @@
 -   [x] Init `{ photoPreview: null }` property
 -   [x] Add `@change` to file input
 -   [x] Create file reader: `const reader = new FileReader()`
--   [ ] Assign photo to `photoPreview`:
+-   [x] Assign photo to `photoPreview`:
 
     ```js
     reader.onload = (e) => {
