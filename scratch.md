@@ -15,14 +15,14 @@
     };
     ```
 
--   [ ] Read selected file on reader
+-   [x] Read selected file on reader
 
     ```js
     reader.readAsDataURL($refs.photo.files[0]);
     ```
 
--   [ ] Test file input
--   [ ] Show photo preview only if there is `photoPreview`
+-   [x] Test file input
+-   [x] Show photo preview only if there is `photoPreview`
 -   [ ] Add `wire:model="photo"` to file input
 -   [ ] Add `photo` property to livewire component
 -   [ ] Validate photo:

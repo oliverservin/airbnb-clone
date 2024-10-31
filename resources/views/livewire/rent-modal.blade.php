@@ -24,6 +24,8 @@ new class extends Component
     #[Validate(['required', 'integer', 'min:1'])]
     public $price;
 
+    public $photo;
+
     public $currentStep = 'photo';
 
     public function validateInfo()
@@ -146,6 +148,7 @@ new class extends Component
 
                 <div x-data="{ photoPreview: null }">
                     <input
+                        wire:model="photo"
                         @change="
                         const reader = new FileReader()
                         reader.onload = (e) => {
@@ -165,7 +168,7 @@ new class extends Component
                         <x-icon.photo class="size-[50px]" />
                         <div class="text-lg font-semibold">Haz clic para subir foto</div>
                         <!-- Photo preview -->
-                        <div class="absolute inset-0 h-full w-full overflow-hidden">
+                        <div x-show="photoPreview" class="absolute inset-0 h-full w-full overflow-hidden">
                             <img :src="photoPreview" class="object-cover" alt="House" />
                         </div>
                     </button>
