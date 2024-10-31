@@ -151,6 +151,7 @@ new class extends Component
                         reader.onload = (e) => {
                             photoPreview = e.target.result
                         }
+                        reader.readAsDataURL($refs.photo.files[0])
                         "
                         class="hidden"
                         x-ref="photo"
