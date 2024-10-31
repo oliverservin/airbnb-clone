@@ -26,6 +26,11 @@ new class extends Component
 
     public $currentStep = 'info';
 
+    public function validateInfo()
+    {
+
+    }
+
     public function save()
     {
         $this->validate();
