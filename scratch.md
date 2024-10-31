@@ -1,7 +1,7 @@
 - [x] Split form into `info`, `description`, `price` forms
-- [ ] Split form into `info`, `description`, `price` sections
+- [x] Split form into `info`, `description`, `price` sections
 - With `currentStep` variable
-- [ ] Add `currentStep` property
+- [x] Add `currentStep` property
 - [ ] Add slot `footer` for each section
 - [ ] Add `wire:submit="validateInfo"` to `info` section
 - [ ] Add `id="infoForm"` to `info` form
