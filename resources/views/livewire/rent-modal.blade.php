@@ -24,7 +24,7 @@ new class extends Component
     #[Validate(['required', 'integer', 'min:1'])]
     public $price;
 
-    public $currentStep = 'description';
+    public $currentStep = 'info';
 
     public function validateInfo()
     {
@@ -59,6 +59,8 @@ new class extends Component
             'description' => $this->description,
             'price' => $this->price,
         ]);
+
+        dd($listing);
     }
 
     public function validationAttributes()
@@ -164,7 +166,7 @@ new class extends Component
         @endif
 
         @if ($currentStep === 'price')
-            <form class="flex flex-col gap-8">
+            <form wire:submit="save" id="priceForm" class="flex flex-col gap-8">
                 <div>
                     <div class="text-2xl font-bold">Ahora, establece tu precio</div>
                     <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
@@ -181,7 +183,9 @@ new class extends Component
 
             <x-slot name="footer">
                 <div class="flex w-full flex-row items-center gap-4">
-                    <x-button type="submit" form="propertyForm">Publicar</x-button>
+                    <x-button type="button" @click="$wire.set('currentStep', 'description')" outline>Regresar</x-button>
+
+                    <x-button type="submit" form="priceForm">Publicar</x-button>
                 </div>
             </x-slot>
         @endif
