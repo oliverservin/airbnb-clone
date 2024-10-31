@@ -13,6 +13,7 @@ class Listing extends Model
         'title',
         'description',
         'price',
+        'photo_path',
     ];
 
     public function user()
