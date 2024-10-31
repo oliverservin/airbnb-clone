@@ -145,7 +145,7 @@ new class extends Component
                 </div>
 
                 <div x-data>
-                    <input x-ref="photo" type="file" />
+                    <input class="hidden" x-ref="photo" type="file" />
                     <button
                         @click="$refs.photo.click()"
                         type="button"
