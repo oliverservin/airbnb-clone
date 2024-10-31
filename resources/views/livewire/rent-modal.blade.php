@@ -60,97 +60,101 @@ new class extends Component
         </x-slot>
 
         @if ($currentStep === 'info')
-        <form class="flex flex-col gap-8">
-            <div>
-                <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
-                <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
-            </div>
-
-            <x-counter wire:model="guests">
+            <form class="flex flex-col gap-8">
                 <div>
-                    <div class="font-medium">Huespedes</div>
-                    <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
+                    <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
+                    <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
                 </div>
 
-                @error('guests')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </x-counter>
+                <x-counter wire:model="guests">
+                    <div>
+                        <div class="font-medium">Huespedes</div>
+                        <div class="font-light text-gray-600">¿Cuántos invitados se permiten?</div>
+                    </div>
 
-            <x-counter wire:model="rooms">
-                <div>
-                    <div class="font-medium">Habitaciones</div>
-                    <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
+                    @error('guests')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </x-counter>
+
+                <x-counter wire:model="rooms">
+                    <div>
+                        <div class="font-medium">Habitaciones</div>
+                        <div class="font-light text-gray-600">¿Cuántas habitaciones tienes?</div>
+                    </div>
+
+                    @error('rooms')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </x-counter>
+
+                <x-counter wire:model="bathrooms">
+                    <div>
+                        <div class="font-medium">Baños</div>
+                        <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
+                    </div>
+
+                    @error('bathrooms')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </x-counter>
+            </form>
+
+            <x-slot name="footer">
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="submit" form="">Continuar</x-button>
                 </div>
-
-                @error('rooms')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </x-counter>
-
-            <x-counter wire:model="bathrooms">
-                <div>
-                    <div class="font-medium">Baños</div>
-                    <div class="font-light text-gray-600">¿Cuántos baños tienes?</div>
-                </div>
-
-                @error('bathrooms')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </x-counter>
-        </form>
+            </x-slot>
         @endif
 
         @if ($currentStep === 'description')
+            <form class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">¿Cómo describirías tu lugar?</div>
+                    <div class="mt-2 font-light text-neutral-500">Lo mejor es que sea breve y concisa.</div>
+                </div>
 
-        <form class="flex flex-col gap-8">
-            <div>
-                <div class="text-2xl font-bold">¿Cómo describirías tu lugar?</div>
-                <div class="mt-2 font-light text-neutral-500">Lo mejor es que sea breve y concisa.</div>
-            </div>
+                <div>
+                    <x-input wire:model="title" label="Título" />
 
-            <div>
-                <x-input wire:model="title" label="Título" />
+                    @error('title')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                @error('title')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </div>
+                <hr />
 
-            <hr />
+                <div>
+                    <x-input wire:model="description" label="Descripción" />
 
-            <div>
-                <x-input wire:model="description" label="Descripción" />
-
-                @error('description')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </div>
-        </form>
+                    @error('description')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </form>
         @endif
 
         @if ($currentStep === 'price')
+            <form class="flex flex-col gap-8">
+                <div>
+                    <div class="text-2xl font-bold">Ahora, establece tu precio</div>
+                    <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
+                </div>
 
-        <form class="flex flex-col gap-8">
-            <div>
-                <div class="text-2xl font-bold">Ahora, establece tu precio</div>
-                <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
-            </div>
+                <div>
+                    <x-price-input wire:model="price" label="Precio" />
 
-            <div>
-                <x-price-input wire:model="price" label="Precio" />
+                    @error('price')
+                        <p class="mt-2 text-rose-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </form>
 
-                @error('price')
-                    <p class="mt-2 text-rose-500">{{ $message }}</p>
-                @enderror
-            </div>
-        </form>
-
-        <x-slot name="footer">
-            <div class="flex w-full flex-row items-center gap-4">
-                <x-button type="submit" form="propertyForm">Publicar</x-button>
-            </div>
-        </x-slot>
+            <x-slot name="footer">
+                <div class="flex w-full flex-row items-center gap-4">
+                    <x-button type="submit" form="propertyForm">Publicar</x-button>
+                </div>
+            </x-slot>
         @endif
     </x-modal>
 </div>
