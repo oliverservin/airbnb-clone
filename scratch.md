@@ -45,9 +45,9 @@
     }
     ```
 
--   [ ] Add `updatePhoto` method to Listing model.
--   [ ] Accept `$photo` parameter as `UploadedFile`
--   [ ] Use `tap` and get the `photo_path`
+-   [x] Add `updatePhoto` method to Listing model.
+-   [x] Accept `$photo` parameter as `UploadedFile`
+-   [x] Use `tap` and get the `photo_path`
     
     ```php
     <?php

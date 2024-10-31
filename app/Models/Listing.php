@@ -24,6 +24,8 @@ class Listing extends Model
 
     public function updatePhoto(UploadedFile $photo)
     {
+        tap($this->photo_path, function ($previous) use ($photo) {
 
+        })
     }
 }
