@@ -1,6 +1,6 @@
--   [ ] Add `@click="$refs.photo.click()"` to button
--   [ ] Add `x-ref="photo"` to input
--   [ ] Init Alpine component with `x-data`
+-   [x] Add `@click="$refs.photo.click()"` to button
+-   [x] Add `x-ref="photo"` to input
+-   [x] Init Alpine component with `x-data`
 -   [ ] Hide file input
 -   [ ] Uncomment photo preview
 -   [ ] Add `:src="photoPreview"` to img preview

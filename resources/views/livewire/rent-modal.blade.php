@@ -24,7 +24,7 @@ new class extends Component
     #[Validate(['required', 'integer', 'min:1'])]
     public $price;
 
-    public $currentStep = 'info';
+    public $currentStep = 'photo';
 
     public function validateInfo()
     {
@@ -83,7 +83,7 @@ new class extends Component
     }
 } ?>
 
-<div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
+<div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
         <x-slot name="title">
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
@@ -144,9 +144,10 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
                 </div>
 
-                <div>
-                    <input type="file" />
+                <div x-data>
+                    <input x-ref="photo" type="file" />
                     <button
+                        @click="$refs.photo.click()"
                         type="button"
                         class="relative flex w-full flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
                     >
