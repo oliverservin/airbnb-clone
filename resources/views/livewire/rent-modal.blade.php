@@ -24,6 +24,8 @@ new class extends Component
     #[Validate(['required', 'integer', 'min:1'])]
     public $price;
 
+    public $currentStep = 'info';
+
     public function save()
     {
         $this->validate();
@@ -57,6 +59,7 @@ new class extends Component
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
         </x-slot>
 
+        @if ($currentStep === 'info')
         <form class="flex flex-col gap-8">
             <div>
                 <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
@@ -96,6 +99,9 @@ new class extends Component
                 @enderror
             </x-counter>
         </form>
+        @endif
+
+        @if ($currentStep === 'description')
 
         <form class="flex flex-col gap-8">
             <div>
@@ -121,6 +127,9 @@ new class extends Component
                 @enderror
             </div>
         </form>
+        @endif
+
+        @if ($currentStep === 'price')
 
         <form class="flex flex-col gap-8">
             <div>
@@ -142,5 +151,6 @@ new class extends Component
                 <x-button type="submit" form="propertyForm">Publicar</x-button>
             </div>
         </x-slot>
+        @endif
     </x-modal>
 </div>
