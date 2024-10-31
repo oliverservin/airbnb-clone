@@ -5,7 +5,7 @@
 - [x] Add slot `footer` for each section
 - [x] Add `wire:submit="validateInfo"` to `info` section
 - [x] Add `id="infoForm"` to `info` form
-- [ ] Add `validateInfo` action
+- [x] Add `validateInfo` action
   - [ ] Validate `guests`, `rooms` `bathrooms`
   - [ ] Set `currentStep` to `description`
 - [ ] Repeat for `description` section
