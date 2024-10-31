@@ -1,4 +1,4 @@
-- [ ] Split form into `info`, `description`, `price` forms
+- [x] Split form into `info`, `description`, `price` forms
 - [ ] Split form into `info`, `description`, `price` sections
 - With `currentStep` variable
 - [ ] Add `currentStep` property

@@ -51,13 +51,13 @@ new class extends Component
     }
 } ?>
 
-<div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
+<div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
         <x-slot name="title">
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
         </x-slot>
 
-        <form id="propertyForm" wire:submit="save" class="flex flex-col gap-8">
+        <form class="flex flex-col gap-8">
             <div>
                 <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
                 <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
@@ -95,7 +95,9 @@ new class extends Component
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </x-counter>
+        </form>
 
+        <form class="flex flex-col gap-8">
             <div>
                 <div class="text-2xl font-bold">¿Cómo describirías tu lugar?</div>
                 <div class="mt-2 font-light text-neutral-500">Lo mejor es que sea breve y concisa.</div>
@@ -118,6 +120,9 @@ new class extends Component
                     <p class="mt-2 text-rose-500">{{ $message }}</p>
                 @enderror
             </div>
+        </form>
+
+        <form class="flex flex-col gap-8">
             <div>
                 <div class="text-2xl font-bold">Ahora, establece tu precio</div>
                 <div class="mt-2 font-light text-neutral-500">¿Cuánto se cobra por noche?</div>
