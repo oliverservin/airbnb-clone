@@ -6,8 +6,8 @@
 - [x] Add `wire:submit="validateInfo"` to `info` section
 - [x] Add `id="infoForm"` to `info` form
 - [x] Add `validateInfo` action
-  - [ ] Validate `guests`, `rooms` `bathrooms`
-  - [ ] Set `currentStep` to `description`
+  - [x] Validate `guests`, `rooms` `bathrooms`
+  - [x] Set `currentStep` to `description`
 - [ ] Repeat for `description` section
   - [ ] `id=descriptionForm` form
   - [ ] `wire:submit="validateDescription` form

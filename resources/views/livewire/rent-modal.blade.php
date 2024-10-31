@@ -28,7 +28,13 @@ new class extends Component
 
     public function validateInfo()
     {
+        $this->validate([
+            'guests' => ['required', 'integer', 'min:1'],
+            'rooms' => ['required', 'integer', 'min:1'],
+            'bathrooms' => ['required', 'integer', 'min:1'],
+        ]);
 
+        $this->currentStep = 'description';
     }
 
     public function save()
