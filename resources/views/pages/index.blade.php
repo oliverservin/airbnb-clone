@@ -6,10 +6,6 @@ name('home') ?>
 
 <x-layouts.app>
     <x-container>
-        @auth
-            Hola {{ auth()->user()->name }}
-        @else
-            Bienvenido
-        @endauth
+        <livewire:listing-list />
     </x-container>
 </x-layouts.app>
