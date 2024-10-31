@@ -1,22 +1,22 @@
-- [x] Split form into `info`, `description`, `price` forms
-- [x] Split form into `info`, `description`, `price` sections
-- With `currentStep` variable
-- [x] Add `currentStep` property
-- [x] Add slot `footer` for each section
-- [x] Add `wire:submit="validateInfo"` to `info` section
-- [x] Add `id="infoForm"` to `info` form
-- [x] Add `validateInfo` action
-  - [x] Validate `guests`, `rooms` `bathrooms`
-  - [x] Set `currentStep` to `description`
-- [x] Repeat for `description` section
-  - [x] `id=descriptionForm` form
-  - [x] `wire:submit="validateDescription` form
-  - [x] submit button to `descriptionForm`
-- [x] Add `@click="$wire.set('currentStep', 'info')"`
-- [x] Add `validateDescription` action
-  - [x] Validate `title` `description`
-  - [x] Set `currentStep` to `description`
-- [ ] `id=saveForm` to price form
-- [ ] `wire:submit="save"`
-- [ ] Add `@click="$wire.set('currentStep', 'description')"`
-- [ ] `dd($listing->title)` to check listing creation
+-   [x] Split form into `info`, `description`, `price` forms
+-   [x] Split form into `info`, `description`, `price` sections
+    -   With `currentStep` variable
+-   [x] Add `currentStep` property
+-   [x] Add slot `footer` for each section
+-   [x] Add `wire:submit="validateInfo"` to `info` section
+-   [x] Add `id="infoForm"` to `info` form
+-   [x] Add `validateInfo` action
+    -   [x] Validate `guests`, `rooms` `bathrooms`
+    -   [x] Set `currentStep` to `description`
+-   [x] Repeat for `description` section
+    -   [x] `id=descriptionForm` form
+    -   [x] `wire:submit="validateDescription` form
+    -   [x] submit button to `descriptionForm`
+-   [x] Add `@click="$wire.set('currentStep', 'info')"`
+-   [x] Add `validateDescription` action
+    -   [x] Validate `title` `description`
+    -   [x] Set `currentStep` to `description`
+-   [x] `id=saveForm` to price form
+-   [x] `wire:submit="save"`
+-   [x] Add `@click="$wire.set('currentStep', 'description')"`
+-   [x] `dd($listing->title)` to check listing creation
