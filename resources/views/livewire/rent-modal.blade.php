@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component
 {
+    use WithFileUploads;
+
     #[Validate(['required', 'integer', 'min:1'])]
     public $guests = 1;
 
@@ -24,7 +27,10 @@ new class extends Component
     #[Validate(['required', 'integer', 'min:1'])]
     public $price;
 
-    public $currentStep = 'info';
+    #[Validate(['nullable', 'image', 'max:2048'])]
+    public $photo;
+
+    public $currentStep = 'photo';
 
     public function validateInfo()
     {
@@ -39,7 +45,9 @@ new class extends Component
 
     public function validatePhoto()
     {
-        // TODO: add validation
+        $this->validate([
+            'photo' => ['nullable', 'image', 'max:2048'],
+        ]);
 
         $this->currentStep = 'description';
     }
@@ -58,7 +66,7 @@ new class extends Component
     {
         $this->validate();
 
-        Auth::user()->listings()->create([
+        $listing = Auth::user()->listings()->create([
             'guests' => $this->guests,
             'rooms' => $this->rooms,
             'bathrooms' => $this->bathrooms,
@@ -66,6 +74,10 @@ new class extends Component
             'description' => $this->description,
             'price' => $this->price,
         ]);
+
+        if ($this->photo) {
+            $listing->updatePhoto($this->photo);
+        }
 
         $this->redirect(route('home'), navigate: true);
     }
@@ -144,18 +156,31 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
                 </div>
 
-                <div>
-                    <input type="file" />
+                <div x-data="{ photoPreview: null }">
+                    <input
+                        wire:model="photo"
+                        x-ref="photo"
+                        class="hidden"
+                        type="file"
+                        x-on:change="
+                            const reader = new FileReader()
+                            reader.onload = (e) => {
+                                photoPreview = e.target.result;
+                            };
+                            reader.readAsDataURL($refs.photo.files[0])
+                        "
+                    />
                     <button
                         type="button"
+                        @click="$refs.photo.click()"
                         class="relative flex w-full flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
                     >
                         <x-icon.photo class="size-[50px]" />
                         <div class="text-lg font-semibold">Haz clic para subir foto</div>
                         <!-- Photo preview -->
-                        <!-- <div class="absolute inset-0 h-full w-full overflow-hidden">
-                            <img class="object-cover" alt="House" />
-                        </div> -->
+                        <div x-show="photoPreview" class="absolute inset-0 h-full w-full overflow-hidden">
+                            <img class="object-cover" :src="photoPreview" alt="House" />
+                        </div>
                     </button>
                 </div>
             </form>
