@@ -3,8 +3,8 @@
 - With `currentStep` variable
 - [x] Add `currentStep` property
 - [x] Add slot `footer` for each section
-- [ ] Add `wire:submit="validateInfo"` to `info` section
-- [ ] Add `id="infoForm"` to `info` form
+- [x] Add `wire:submit="validateInfo"` to `info` section
+- [x] Add `id="infoForm"` to `info` form
 - [ ] Add `validateInfo` action
   - [ ] Validate `guests`, `rooms` `bathrooms`
   - [ ] Set `currentStep` to `description`
