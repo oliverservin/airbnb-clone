@@ -23,9 +23,9 @@
 
 -   [x] Test file input
 -   [x] Show photo preview only if there is `photoPreview`
--   [ ] Add `wire:model="photo"` to file input
--   [ ] Add `photo` property to livewire component
--   [ ] Validate photo:
+-   [x] Add `wire:model="photo"` to file input
+-   [x] Add `photo` property to livewire component
+-   [x] Validate photo:
 
     ```php
     <?php
@@ -34,9 +34,9 @@
     ]);
     ```
 
--   [ ] Test upload a file
--   [ ] Add `use WithFileUploads;`
--   [ ] Update listing photo there is a photo:
+-   [x] Test upload a file
+-   [x] Add `use WithFileUploads;`
+-   [x] Update listing photo there is a photo:
 
     ```php
     <?php

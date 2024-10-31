@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component
 {
+    use WithFileUploads;
+
     #[Validate(['required', 'integer', 'min:1'])]
     public $guests = 1;
 
@@ -41,7 +44,9 @@ new class extends Component
 
     public function validatePhoto()
     {
-        // TODO: add validation
+        $this->validate([
+            'photo' => ['nullable', 'image', 'max:2048']
+        ]);
 
         $this->currentStep = 'description';
     }
@@ -60,7 +65,7 @@ new class extends Component
     {
         $this->validate();
 
-        Auth::user()->listings()->create([
+        $listing = Auth::user()->listings()->create([
             'guests' => $this->guests,
             'rooms' => $this->rooms,
             'bathrooms' => $this->bathrooms,
@@ -68,6 +73,10 @@ new class extends Component
             'description' => $this->description,
             'price' => $this->price,
         ]);
+
+        if ($this->photo) {
+            $listing->updatePhoto($this->photo);
+        }
 
         $this->redirect(route('home'), navigate: true);
     }
