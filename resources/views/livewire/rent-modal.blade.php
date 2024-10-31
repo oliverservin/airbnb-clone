@@ -60,7 +60,7 @@ new class extends Component
         </x-slot>
 
         @if ($currentStep === 'info')
-            <form class="flex flex-col gap-8">
+            <form wire:submit="validateInfo" id="infoForm" class="flex flex-col gap-8">
                 <div>
                     <div class="text-2xl font-bold">Comparte algunos datos básicos sobre tu casa</div>
                     <div class="mt-2 font-light text-neutral-500">¿Qué comodidades tienes?</div>
@@ -102,7 +102,7 @@ new class extends Component
 
             <x-slot name="footer">
                 <div class="flex w-full flex-row items-center gap-4">
-                    <x-button type="submit" form="">Continuar</x-button>
+                    <x-button type="submit" form="infoForm">Continuar</x-button>
                 </div>
             </x-slot>
         @endif
