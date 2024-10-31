@@ -144,7 +144,8 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
                 </div>
 
-                <div x-data="{ photoPreview: null }">
+                <div>
+                    <input type="file" />
                     <button
                         type="button"
                         class="relative flex w-full flex-col items-center justify-center gap-4 border-2 border-dashed border-neutral-300 p-20 text-neutral-600 transition hover:opacity-70"
