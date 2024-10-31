@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class Listing extends Model
 {
@@ -25,7 +26,16 @@ class Listing extends Model
     public function updatePhoto(UploadedFile $photo)
     {
         tap($this->photo_path, function ($previous) use ($photo) {
+            $this->fill([
+                'photo_path' => $photo->storePublicly(
+                    'listings-photo',
+                    ['disk' => 'public']
+                )
+            ])->save();
 
-        })
+            if ($previous) {
+                Storage::disk('public')->delete($previous);
+            }
+        });
     }
 }

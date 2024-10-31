@@ -55,7 +55,7 @@
         //
     });
     ```
--   [ ] Fill the `photo_path` and save
+-   [x] Fill the `photo_path` and save
     
     ```php
     <?php
@@ -63,7 +63,7 @@
         'photo_path' => $photo->storePublicly('listing-photos', ['disk' => 'public'])
     ])->save();
     ```
--   [ ] Delete `previous` photo
+-   [x] Delete `previous` photo
 
     ```php
     <?php
@@ -71,8 +71,8 @@
         Storage::disk('public')->delete($previous);
     }
     ```
-- [ ] Uncomment listing photo in `listing-card`
-- [ ] Add `$listing->photo_url` as img source
+- [x] Uncomment listing photo in `listing-card`
+- [x] Add `$listing->photo_url` as img source
 - [ ] Add `photoUrl` method as Attribute
 - [ ] Return Attribute get with public photo url or null if no photo
 

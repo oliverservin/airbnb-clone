@@ -45,7 +45,7 @@ new class extends Component
     public function validatePhoto()
     {
         $this->validate([
-            'photo' => ['nullable', 'image', 'max:2048']
+            'photo' => ['nullable', 'image', 'max:10240']
         ]);
 
         $this->currentStep = 'description';
@@ -94,7 +94,7 @@ new class extends Component
     }
 } ?>
 
-<div x-data="{ showRentModal: true }" x-on:show-rent-modal.window="showRentModal = true">
+<div x-data="{ showRentModal: false }" x-on:show-rent-modal.window="showRentModal = true">
     <x-modal x-model="showRentModal">
         <x-slot name="title">
             <div class="text-lg font-semibold">Pon tu casa en StayStop</div>
@@ -221,7 +221,7 @@ new class extends Component
             <x-slot name="footer">
                 <div class="flex w-full flex-row items-center gap-4">
                     <x-button outline @click="$wire.set('currentStep', 'photo')">Regresar</x-button>
-                    <x-button type="submit" form="descriptionForm">Publicar</x-button>
+                    <x-button type="submit" form="descriptionForm">Continuar</x-button>
                 </div>
             </x-slot>
         @endif
