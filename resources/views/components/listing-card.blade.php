@@ -5,7 +5,6 @@
         <div class="relative aspect-square w-full overflow-hidden rounded-xl bg-neutral-200">
             <!-- Listing photo -->
             <!-- <img
-                fill
                 class="h-full w-full object-cover transition group-hover:scale-110"
                 alt="Listing"
             /> -->
