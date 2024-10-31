@@ -8,14 +8,14 @@
 - [x] Add `validateInfo` action
   - [x] Validate `guests`, `rooms` `bathrooms`
   - [x] Set `currentStep` to `description`
-- [ ] Repeat for `description` section
-  - [ ] `id=descriptionForm` form
-  - [ ] `wire:submit="validateDescription` form
-  - [ ] submit button to `descriptionForm`
+- [x] Repeat for `description` section
+  - [x] `id=descriptionForm` form
+  - [x] `wire:submit="validateDescription` form
+  - [x] submit button to `descriptionForm`
 - [ ] Add `@click="$wire.set('currentStep', 'info')"`
-- [ ] Add `validateDescription` action
-  - [ ] Validate `title` `description`
-  - [ ] Set `currentStep` to `description`
+- [x] Add `validateDescription` action
+  - [x] Validate `title` `description`
+  - [x] Set `currentStep` to `description`
 - [ ] `id=saveForm` to price form
 - [ ] `wire:submit="save"`
 - [ ] Add `@click="$wire.set('currentStep', 'description')"`
