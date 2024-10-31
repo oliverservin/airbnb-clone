@@ -12,7 +12,7 @@
   - [x] `id=descriptionForm` form
   - [x] `wire:submit="validateDescription` form
   - [x] submit button to `descriptionForm`
-- [ ] Add `@click="$wire.set('currentStep', 'info')"`
+- [x] Add `@click="$wire.set('currentStep', 'info')"`
 - [x] Add `validateDescription` action
   - [x] Validate `title` `description`
   - [x] Set `currentStep` to `description`
