@@ -2,9 +2,9 @@
 -   [x] Add `x-ref="photo"` to input
 -   [x] Init Alpine component with `x-data`
 -   [x] Hide file input
--   [ ] Uncomment photo preview
--   [ ] Add `:src="photoPreview"` to img preview
--   [ ] Init `{ photoPreview: null }` property
+-   [x] Uncomment photo preview
+-   [x] Add `:src="photoPreview"` to img preview
+-   [x] Init `{ photoPreview: null }` property
 -   [ ] Add `@change` to file input
 -   [ ] Create file reader: `const reader = new FileReader()`
 -   [ ] Assign photo to `photoPreview`:

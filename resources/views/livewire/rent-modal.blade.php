@@ -144,8 +144,8 @@ new class extends Component
                     <div class="mt-2 font-light text-neutral-500">Muestra a tus invitados cómo es tu casa.</div>
                 </div>
 
-                <div x-data>
-                    <input class="hidden" x-ref="photo" type="file" />
+                <div x-data="{ photoPreview: null }">
+                    <input @change="" class="hidden" x-ref="photo" type="file" />
                     <button
                         @click="$refs.photo.click()"
                         type="button"
@@ -154,9 +154,9 @@ new class extends Component
                         <x-icon.photo class="size-[50px]" />
                         <div class="text-lg font-semibold">Haz clic para subir foto</div>
                         <!-- Photo preview -->
-                        <!-- <div class="absolute inset-0 h-full w-full overflow-hidden">
-                            <img class="object-cover" alt="House" />
-                        </div> -->
+                        <div class="absolute inset-0 h-full w-full overflow-hidden">
+                            <img :src="photoPreview" class="object-cover" alt="House" />
+                        </div>
                     </button>
                 </div>
             </form>
