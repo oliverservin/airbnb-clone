@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -36,6 +37,14 @@ class Listing extends Model
             if ($previous) {
                 Storage::disk('public')->delete($previous);
             }
+        });
+    }
+
+    public function photoUrl() : Attribute {
+        return Attribute::get(function () {
+            return $this->photo_path
+                ? Storage::disk('public')->url($this->photo_path)
+                : null;
         });
     }
 }

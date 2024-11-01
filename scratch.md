@@ -73,8 +73,8 @@
     ```
 - [x] Uncomment listing photo in `listing-card`
 - [x] Add `$listing->photo_url` as img source
-- [ ] Add `photoUrl` method as Attribute
-- [ ] Return Attribute get with public photo url or null if no photo
+- [x] Add `photoUrl` method as Attribute
+- [x] Return Attribute get with public photo url or null if no photo
 
     ```php
     <?php
